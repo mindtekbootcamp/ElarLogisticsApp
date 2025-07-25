@@ -36,7 +36,6 @@ public class Driver {
                 default:
                     return driver;
             }
-
         }
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
