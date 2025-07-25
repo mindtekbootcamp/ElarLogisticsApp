@@ -21,8 +21,6 @@ public class ElarLogisticsLoginPage {
     @FindBy(id = "login-password")
     public WebElement passwordInput;
 
-
-
     @FindBy(css = "button[type='submit']")
     public WebElement loginBtn;
 
