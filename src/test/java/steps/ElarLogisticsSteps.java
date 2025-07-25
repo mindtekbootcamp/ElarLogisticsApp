@@ -44,16 +44,16 @@ public class ElarLogisticsSteps {
     public void user_clicks_on_show_password_button() {
         elarLogisticsLoginPage.hidePWBtn.click();
     }
-    @When("user validates password {string} is correct")
-    public void user_validates_password_is_correct(String password) {
-        Assert.assertEquals("text", elarLogisticsLoginPage.passwordInput.getAttribute("type"));
+    @Then("user validates password is shown with type attribute {string}")
+    public void user_validates_password_is_shown_with_type_attribute(String attribute) {
+        Assert.assertEquals(attribute, elarLogisticsLoginPage.passwordInput.getAttribute("type"));
     }
     @When("user clicks on hide password button")
     public void user_clicks_on_hide_password_button() {
         elarLogisticsLoginPage.hidePWBtn.click();
     }
-    @When("user clicks on login button")
-    public void user_clicks_on_login_button() {
-        elarLogisticsLoginPage.loginBtn.click();
+    @Then("user validates password is hidden with type attribute {string}")
+    public void user_validates_password_is_hidden_with_type_attribute(String attribute) {
+        Assert.assertEquals(attribute, elarLogisticsLoginPage.passwordInput.getAttribute("type"));
     }
 }
