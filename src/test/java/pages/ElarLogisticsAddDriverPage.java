@@ -17,7 +17,7 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(id = "uniforms-0005-0000")
     public WebElement staffCheckBox;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/div[2]/div[2]/button")
+    @FindBy(xpath = "//label[text()='Other location']/../following-sibling::div/button")
     public WebElement otherLocationSearchBtn;
 
     // is only clickable after "otherLocationSearchBtn" is clicked
