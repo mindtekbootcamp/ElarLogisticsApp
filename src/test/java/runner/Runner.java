@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
         plugin = {"rerun:target/rerun.txt", "json:target/cucumber.json"},
         features = "src/test/resources/features",
         glue = "steps",
-        tags = "@elar",
-        dryRun = false
+        tags = "@addDriver",
+        dryRun = true
 )
 
 public class Runner {
