@@ -1,4 +1,4 @@
-@regression @elar
+@regression @elar @login
 Feature: Validations for Elar Logistics Login Functionalities
 
   Background: Setup
@@ -10,7 +10,7 @@ Feature: Validations for Elar Logistics Login Functionalities
     Then user validates successful login with home page message "Access denied!"
 
   @LoginNegative @smoke
-  Scenario: Validating login fucntionality with negative scenario
+  Scenario: Validating login functionality with negative scenario
     When user enters username "adskdjfskfjsfsd" and password "collaboration900"
     Then user validates error message is displayed "Invalid username or password"
 
@@ -21,3 +21,6 @@ Feature: Validations for Elar Logistics Login Functionalities
     Then user validates password is shown with type attribute "text"
     When user clicks on hide password button
     Then user validates password is hidden with type attribute "password"
+
+  @createMinimumRequirements
+  Scenario: Validating Create Button Minimum Requirements
