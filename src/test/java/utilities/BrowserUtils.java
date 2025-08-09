@@ -79,6 +79,15 @@ public class BrowserUtils {
     }
 
     /**
+     * Generates a UUID random ID
+     * @return
+     */
+    public static String uuidIDGenerator(){
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+
+    /**
      *
      */
     public static void removeGoogleAds(){

@@ -17,4 +17,7 @@ public class ElarLogisticsMainPage {
 
     @FindBy(css = "h2[class='MuiTypography-root MuiTypography-h2 css-12czkc3']")
     public WebElement welcomeMsg;
+
+    @FindBy(xpath = "//p[text()='Drivers']")
+    public WebElement mainPageDriversBtn;
 }

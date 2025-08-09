@@ -17,7 +17,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates success message is displayed "Driver Created Successfully"
 
@@ -27,7 +27,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates error message for name with more than 50 characters is displayed "String must contain at most 50 character(s)"
 
@@ -37,7 +37,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates error message for name with special characters is displayed "Input must contain only alphanumeric and specific punctuation characters"
 
@@ -47,7 +47,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2027"
     And user selects medical license expiration date "09/01/2027"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates success message is displayed "Driver Created Successfully"
 
@@ -57,7 +57,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "07/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates error message for driving license past date is displayed "Only future dates can be select"
 
@@ -67,7 +67,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "08/09/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates error message for driving license current date is displayed "Only future dates can be select"
 
@@ -77,7 +77,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates success message is displayed "Driver Created Successfully"
 
@@ -87,7 +87,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "07/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates error message for medical license past date is displayed "Only future dates can be select"
 
@@ -97,7 +97,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "08/09/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Create button
     Then user validates error message for medical license current date is displayed "Only future dates can be select"
 
@@ -107,7 +107,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks Staff checkbox
     Then user validates Staff checkmark is checked
     When user clicks Staff checkbox
@@ -119,7 +119,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks the Other Location search button
     And user clicks the Create New button
     And user clicks the Create button
@@ -133,7 +133,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user clicks on Local checkbox
     Then user validates Local checkmark is shown
     When user clicks on Local State dropdown
@@ -149,8 +149,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
-    And user clicks the plus icon
+    And user enters input into Logbook email field "test@test.com"
     And user enters phone number "1234567890"
     And user clicks on Create button
     Then user validates success message is displayed "Driver Created Successfully"
@@ -161,8 +160,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
-    And user clicks the plus icon
+    And user enters input into Logbook email field "test@test.com"
     And user enters phone number "123456789"
     And user clicks on Create button
     Then user validates error message for phone number is displayed "Valid phone number required"
@@ -173,7 +171,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user enters email address "John.Doe@Mindtek.io"
     And user clicks on Create button
     Then user validates success message is displayed "Driver Created Successfully"
@@ -184,7 +182,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user enters email address "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@test.com"
     Then user validates error message for email with more than 50 characters is displayed "String must contain at most 50 character(s)"
 
@@ -194,6 +192,6 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user selects driving license expiration date "09/01/2025"
     And user selects medical license expiration date "09/01/2025"
     And user enters input into Logbook# field
-    And user enters input into Logbookemail field "test@test.com"
+    And user enters input into Logbook email field "test@test.com"
     And user enters email address "!@#$%@test.com"
     Then user validates error message for email with special characters is displayed "Enter the correct email address"
