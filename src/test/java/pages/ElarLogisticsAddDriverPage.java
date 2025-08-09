@@ -39,93 +39,93 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(name = "full_name")
     public WebElement fullNameTextBox;
 
-    @FindBy(id = "uniforms-0005-0003")
+    @FindBy(name = "is_local")
     public WebElement localCheckBox;
 
     // LocalStateSelect is only clickable after "localCheckBox" is selected
-    @FindBy(id = "uniforms-0005-0004")
+    @FindBy(name = "local_state")
     public WebElement localStateSelect;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/button[1]")
+    @FindBy(xpath = "//p[text()='Phone']/following-sibling::button[1]")
     public WebElement addPhoneBtn;
 
     // only available after "addPhoneBtn" is clicked
-    @FindBy(id = ":rh5:")
+    @FindBy(xpath = "//input[@type='tel']")
     public WebElement phoneTextBox;
 
     // only available after "addPhoneBtn" is clicked
-    @FindBy(id = "uniforms-0005-0005")
+    @FindBy(xpath = "//label[text()='Ext.']/following-sibling::div/input")
     public WebElement phoneExtTextBox;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/button[2]")
+    @FindBy(xpath = "//p[text()='Email']/following-sibling::button[1]")
     public WebElement addEmailBtn;
 
     // only available after "addEmailBtn" is clicked
-    @FindBy(id = "uniforms-0005-0006")
+    @FindBy(xpath = "//input[@placeholder='Email']")
     public WebElement emailTextBox;
 
     // accepts 8 digits
-    @FindBy(id = "uniforms-0005-000c")
+    @FindBy(name = "driving_license_exp")
     public WebElement drivingLicenceExpTextBox;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/div[9]/div/div/div/button")
+    @FindBy(xpath = "//input[@value='MM/DD/YYYY']/following-sibling::div/button")
     public WebElement drivingLicenceExpCalanderBtn;
 
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[3]/button[3]")
-    public WebElement drivingLicenceInputExpiredDate;
-
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[2]/button[1]")
-    public WebElement drivingLicenceInputFutureDate;
-
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[1]/button[2]")
-    public WebElement drivingLicenceInputTodaysDate;
+//    @FindBy(xpath = "")
+//    public WebElement drivingLicenceInputExpiredDate;
+//
+//    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[2]/button[1]")
+//    public WebElement drivingLicenceInputFutureDate;
+//
+//    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[1]/button[2]")
+//    public WebElement drivingLicenceInputTodaysDate;
 
     // accepts 8 digits
-    @FindBy(id = "uniforms-0005-000d")
+    @FindBy(name = "medical_certification_exp")
     public WebElement medicalLicenceExpTextBox;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/div[10]/div/div/div/button")
+    @FindBy(xpath = "//input[@name='medical_certification_exp']/following-sibling::div/button")
     public WebElement medicalLicenseCalanderBtn;
 
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[2]/button[4]")
-    public WebElement medicalLicenceInputExpiredDate;
+//    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[2]/button[4]")
+//    public WebElement medicalLicenceInputExpiredDate;
+//
+//    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[3]/button[4]")
+//    public WebElement medicalLicenceInputFutureDate;
+//
+//    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[1]/button[2]")
+//    public WebElement medicalLicenseInputTodaysDate;
 
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[3]/button[4]")
-    public WebElement medicalLicenceInputFutureDate;
-
-    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[1]/button[2]")
-    public WebElement medicalLicenseInputTodaysDate;
-
-    @FindBy(id = "uniforms-0005-000g")
+    @FindBy(xpath = "//label[text()='Logbook #']/following-sibling::div/input")
     public WebElement logbookNumberTextBox;
 
     // only clickable after "logBookNumberTextBox" is filled in
-    @FindBy(id = "uniforms-0005-000h")
+    @FindBy(name = "logbook_email")
     public WebElement logbookEmailTextBox;
 
     // only clickable after "logbookEmailTextBox" is filled in
-    @FindBy(id = "uniforms-0005-000i")
+    @FindBy(name = "logbook_password")
     public WebElement logbookPasswordTextBox;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/div[19]/button")
+    @FindBy(xpath = "//button[text()='Create new']")
     public WebElement createNewBtn;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/div[19]/p[1]")
+    @FindBy(xpath = "//p[text()='Required'][2]")
     public WebElement requiredErrorMessage;
 
-    @FindBy(id = "uniforms-000a-0002-helper-text")
+    @FindBy(xpath = "//p[text()='String must contain at most 50 character(s)']")
     public WebElement maxCharNameErrorMessage;
 
-    @FindBy(id = "uniforms-000a-0002-helper-text")
+    @FindBy(xpath = "//p[text()='Input must contain only alphanumeric and specific punctuation characters']")
     public WebElement alphanumericErrorMessage;
 
-    @FindBy(id = "uniforms-000a-0006-helper-text")
+    @FindBy(id = "")
     public WebElement correctEmailErrorMessage;
 
-    @FindBy(id = "uniforms-000a-0006-helper-text")
+    @FindBy(id = "")
     public WebElement maxCharEmailErrorMessage;
 
-    @FindBy(id = ":re7:")
+    @FindBy(id = "")
     public WebElement driverCreatedSuccessfullyMessage;
 
 }
