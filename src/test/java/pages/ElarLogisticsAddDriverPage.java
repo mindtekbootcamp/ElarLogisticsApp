@@ -119,13 +119,13 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(xpath = "//p[text()='Input must contain only alphanumeric and specific punctuation characters']")
     public WebElement alphanumericErrorMessage;
 
-    @FindBy(id = "")
+    @FindBy(xpath = "//p[text()='Enter the correct email address']")
     public WebElement correctEmailErrorMessage;
 
-    @FindBy(id = "")
+    @FindBy(xpath = "//p[text()='String must contain at most 50 character(s)']")
     public WebElement maxCharEmailErrorMessage;
 
-    @FindBy(id = "")
+    @FindBy(xpath = "//h2[text()='Driver Created Successfully']")
     public WebElement driverCreatedSuccessfullyMessage;
 
 }
