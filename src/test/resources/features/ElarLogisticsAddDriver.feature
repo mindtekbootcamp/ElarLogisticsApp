@@ -136,9 +136,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user enters input into Logbook email field "test@test.com"
     And user clicks on Local checkbox
     Then user validates Local checkmark is shown
-    When user clicks on Local State dropdown
-    And user selects the local state "IL"
-    Then user validates "IL" is shown in the Local State field
+    When user selects from "IL" from the Local State dropdown
     When user clicks on Local checkbox
     Then user validates Local checkbox is unchecked
     And Local State field is empty

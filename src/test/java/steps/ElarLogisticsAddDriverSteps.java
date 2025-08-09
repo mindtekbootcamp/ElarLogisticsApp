@@ -81,8 +81,8 @@ public class ElarLogisticsAddDriverSteps {
 
     @Then("user validates error message for email with special characters is displayed {string}")
     public void user_validates_error_message_for_email_with_special_characters_is_displayed(String expectedErrorMessage) {
-        //String actualErrorMessage = elarLogisticsAddDriverPage.error;
-        //Assert.assertEquals(expectedErrorMessage,);
+        String actualErrorMessage = elarLogisticsAddDriverPage.alphanumericErrorMessage.getText();
+        Assert.assertEquals(expectedErrorMessage,actualErrorMessage);
     }
 
     @When("user enters phone number {string}")
@@ -153,17 +153,11 @@ public class ElarLogisticsAddDriverSteps {
         
     }
 
-    @When("user clicks on Local State dropdown")
-    public void user_clicks_on_local_state_dropdown() {
+    @When("user selects from {string} from the Local State dropdown")
+    public void user_selects_from_from_the_local_state_dropdown(String stateSelect) {
         Select dropdownSelect = new Select(elarLogisticsAddDriverPage.localStateSelect);
-
+        dropdownSelect.selectByValue(stateSelect);
     }
-
-    @When("user selects the local state {string}")
-    public void user_selects_the_local_state(String string) {
-        
-    }
-
     @When("user clicks on Create button")
     public void user_clicks_on_create_button() {
         elarLogisticsAddDriverPage.createNewBtn.click();
@@ -185,26 +179,26 @@ public class ElarLogisticsAddDriverSteps {
     }
 
     @Then("user validates error message for medical license current date is displayed {string}")
-    public void user_validates_error_message_for_medical_license_current_date_is_displayed(String string) {
+    public void user_validates_error_message_for_medical_license_current_date_is_displayed(String expectedErrorMessage) {
         
     }
 
     @Then("user validates error message for driving license past date is displayed {string}")
-    public void user_validates_error_message_for_driving_license_past_date_is_displayed(String string) {
+    public void user_validates_error_message_for_driving_license_past_date_is_displayed(String expectedErrorMessage) {
         
     }
 
     @Then("user validates error message for name with special characters is displayed {string}")
-    public void user_validates_error_message_for_name_with_special_characters_is_displayed(String string) {
+    public void user_validates_error_message_for_name_with_special_characters_is_displayed(String expectedErrorMessage) {
         
     }
 
     @Then("user validates error message for driving license current date is displayed {string}")
-    public void user_validates_error_message_for_driving_license_current_date_is_displayed(String string) {
+    public void user_validates_error_message_for_driving_license_current_date_is_displayed(String expectedErrorMessage) {
         
     }
     @Then("user validates error message for medical license past date is displayed {string}")
-    public void user_validates_error_message_for_medical_license_past_date_is_displayed(String string) {
+    public void user_validates_error_message_for_medical_license_past_date_is_displayed(String expectedErrorMessage) {
         
     }
     @Then("user validates error message above Create button is shown {string}")
