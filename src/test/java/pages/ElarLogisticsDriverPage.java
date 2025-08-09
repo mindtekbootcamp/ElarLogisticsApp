@@ -14,6 +14,6 @@ public class ElarLogisticsDriverPage {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div[1]/main/div[4]/div[2]/button")
+    @FindBy(xpath = "//button[text()='Add driver']")
    public WebElement addDriverBtn;
 }

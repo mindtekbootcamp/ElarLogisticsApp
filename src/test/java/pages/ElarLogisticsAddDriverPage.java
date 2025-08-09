@@ -14,30 +14,30 @@ public class ElarLogisticsAddDriverPage {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(id = "uniforms-0005-0000")
+    @FindBy(xpath = "//input[@value='is_staff']")
     public WebElement staffCheckBox;
 
     @FindBy(xpath = "//label[text()='Other location']/../following-sibling::div/button")
     public WebElement otherLocationSearchBtn;
 
     // is only clickable after "otherLocationSearchBtn" is clicked
-    @FindBy(id = ":rgd:")
-    public WebElement otherLocationsSearchTextBox;
+    @FindBy(xpath = "//label[text()='Search...']/following-sibling::div/input")
+    public WebElement otherLocationsSearchPopUpTextBox;
 
-    @FindBy(id = "uniforms-0005-0001")
-    public WebElement otherLocationsDisabledTextBox;
+    @FindBy(xpath = "//label[text()='Other location']/following-sibling::div/input")
+    public WebElement otherLocationsTextBox;
 
-    @FindBy(xpath = "/html/body/div[2]/div[3]/div/section/div/div[1]/div[2]/button")
-    public WebElement otherLocationsCreateNewBtn;
+    @FindBy(xpath = "//button[text()='Create New']")
+    public WebElement otherLocationsPopUpCreateNewBtn;
 
-    @FindBy(xpath = "/html/body/div[3]/div[3]/div/section/div/div/form/div[7]/button")
-    public WebElement otherLocationsFinalCreateBtn;
+    @FindBy(xpath = "//button[text()='Create']")
+    public WebElement otherLocationsPopUpCreateBtn;
 
-    @FindBy(xpath = "//*[@id=root]/div[1]/main/div[2]/div/div/div/form/div[2]/div[2]/button")
+    @FindBy(xpath = "//label[text()='Other location']/../following-sibling::div/button")
     public WebElement otherLocationsTrashBtn;
 
-    @FindBy(id = "uniforms-0005-0002")
-    public WebElement firstNameTextBox;
+    @FindBy(name = "full_name")
+    public WebElement fullNameTextBox;
 
     @FindBy(id = "uniforms-0005-0003")
     public WebElement localCheckBox;
