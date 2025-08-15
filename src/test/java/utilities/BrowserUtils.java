@@ -79,6 +79,15 @@ public class BrowserUtils {
     }
 
     /**
+     * Generates a UUID random ID
+     * @return
+     */
+    public static String uuidIDGenerator(){
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+
+    /**
      *
      */
     public static void removeGoogleAds(){
@@ -93,6 +102,16 @@ public class BrowserUtils {
     public static void scrollBy(Integer pixels){
         JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
         jse.executeScript("window.scrollBy(0,"+pixels+")", "");
+    }
+
+    /**
+     * Scrolls the page until the provided element is in view
+     * @param element
+     */
+    public static void scrollingIntoView(WebElement element) throws InterruptedException {
+        JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
+        jse.executeScript("arguments[0].scrollIntoView(false);", element);
+        Thread.sleep(500);
     }
 
 }
