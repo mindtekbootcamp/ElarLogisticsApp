@@ -104,4 +104,14 @@ public class BrowserUtils {
         jse.executeScript("window.scrollBy(0,"+pixels+")", "");
     }
 
+    /**
+     * Scrolls the page until the provided element is in view
+     * @param element
+     */
+    public static void scrollingIntoView(WebElement element) throws InterruptedException {
+        JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
+        jse.executeScript("arguments[0].scrollIntoView(false);", element);
+        Thread.sleep(500);
+    }
+
 }
