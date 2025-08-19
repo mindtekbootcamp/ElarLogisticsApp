@@ -104,7 +104,7 @@ public class ElarLogisticsAddDriverPage {
     public WebElement logbookEmailTextBox;
 
     // only clickable after "logbookEmailTextBox" is filled in
-    @FindBy(name = "logbook_password")
+    @FindBy(xpath = "//label[text()='Manual id']/following-sibling::div/input")
     public WebElement logbookPasswordTextBox;
 
     @FindBy(xpath = "//button[text()='Create new']")

@@ -16,4 +16,17 @@ public class ElarLogisticsDriverPage {
 
     @FindBy(xpath = "//button[text()='Add driver']")
    public WebElement addDriverBtn;
+
+    @FindBy(xpath = "//label[text()='Search...']/following-sibling::div/input")
+    public WebElement driverPageSearch;
+
+    @FindBy(xpath = "//button[text()='ID']")
+    public WebElement idSearchBtn;
+
+    @FindBy(xpath = "//button[text()='Name']")
+    public WebElement nameSearchBtn;
+
+    @FindBy(xpath = "//button[text()='Email/Phone']")
+    public WebElement emailPhoneSearchBtn;
+
 }
