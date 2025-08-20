@@ -68,7 +68,7 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(name = "driving_license_exp")
     public WebElement drivingLicenceExpTextBox;
 
-    @FindBy(xpath = "//input[@value='MM/DD/YYYY']/following-sibling::div/button")
+    @FindBy(xpath = "(//button[@aria-label='Choose date'])[1]")
     public WebElement drivingLicenceExpCalanderBtn;
 
 //    @FindBy(xpath = "")
@@ -84,7 +84,7 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(name = "medical_certification_exp")
     public WebElement medicalLicenceExpTextBox;
 
-    @FindBy(xpath = "//input[@name='medical_certification_exp']/following-sibling::div/button")
+    @FindBy(xpath = "(//button[@aria-label='Choose date'])[1]")
     public WebElement medicalLicenseCalanderBtn;
 
 //    @FindBy(xpath = "/html/body/div[2]/div[2]/div/div/div/div[2]/div/div/div[2]/div/div[2]/button[4]")
@@ -127,5 +127,8 @@ public class ElarLogisticsAddDriverPage {
 
     @FindBy(xpath = "//h2[text()='Driver Created Successfully']")
     public WebElement driverCreatedSuccessfullyMessage;
+
+    @FindBy(xpath = "\"//button[text()='1']")
+    public WebElement calendarDay1;
 
 }
