@@ -35,17 +35,15 @@ public class ElarLogisticsAddDriverSteps {
     @When("user navigates to the Drivers page")
     public void user_navigates_to_the_drivers_page() throws InterruptedException {
         ElarLogisticsMainPage elarLogisticsMainPage = new ElarLogisticsMainPage();
-        Thread.sleep(1000);
+        BrowserUtils.waitForElementToBeClickable(elarLogisticsMainPage.mainPageDriversBtn);
         elarLogisticsMainPage.mainPageDriversBtn.click();
-        Thread.sleep(1000);
     }
 
     @When("user clicks on Add Driver button")
-    public void user_clicks_on_add_driver_button() throws InterruptedException {
+    public void user_clicks_on_add_driver_button(){
         ElarLogisticsDriverPage elarLogisticsDriverPage = new ElarLogisticsDriverPage();
-        Thread.sleep(1000);
+        BrowserUtils.waitForElementToBeClickable(elarLogisticsDriverPage.addDriverBtn);
         elarLogisticsDriverPage.addDriverBtn.click();
-        Thread.sleep(1000);
     }
 
     @When("user clicks Staff checkbox")
@@ -185,7 +183,7 @@ public class ElarLogisticsAddDriverSteps {
     public void user_clicks_on_create_button() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", elarLogisticsAddDriverPage.createNewBtn);
-        Thread.sleep(500);
+        BrowserUtils.waitForElementToBeClickable(elarLogisticsAddDriverPage.createNewBtn);
         elarLogisticsAddDriverPage.createNewBtn.click();
         Thread.sleep(1000);
     }
