@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class ElarLogisticsDriverPage {
     WebDriver driver;
 
@@ -29,4 +31,6 @@ public class ElarLogisticsDriverPage {
     @FindBy(xpath = "//button[text()='Email/Phone']")
     public WebElement emailPhoneSearchBtn;
 
+    @FindBy(xpath = "(//div[@role='rowgroup'])[2]//div[@data-field='id']/div")
+    public List<WebElement> searchResultIds;
 }

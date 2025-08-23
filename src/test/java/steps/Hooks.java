@@ -15,9 +15,9 @@ public class Hooks {
         System.out.println("Before Scenario Method");
     }
 
-    @After
-    public void teardown(){
-        driver.quit();
-        System.out.println("After Scenario Method");
-    }
+//    @After
+//    public void teardown(){
+//        driver.quit();
+//        System.out.println("After Scenario Method");
+//    }
 }
