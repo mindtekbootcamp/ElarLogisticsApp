@@ -33,4 +33,8 @@ public class ElarLogisticsDriverPage {
 
     @FindBy(xpath = "(//div[@role='rowgroup'])[2]//div[@data-field='id']/div")
     public List<WebElement> searchResultIds;
+
+    @FindBy(xpath = "(//div[@role='rowgroup'])[2]//div[@data-field='full_name']/div")
+    public List<WebElement> searchResultNames;
+
 }

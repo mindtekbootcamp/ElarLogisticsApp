@@ -51,7 +51,7 @@ Feature: Validations for Elar Logistics Search Driver functionality
   @searchValidEmail
   Scenario: Validating Search with valid email
     And user clicks EMAIL or PHONE button
-    And user searches email address "abc@gmail.com"
+    And user searches email address "driver@driver.com"
     Then user validates only drivers with provided Email search criteria should be shown
 
   @searchInvalidEmailWithSpecialChar
