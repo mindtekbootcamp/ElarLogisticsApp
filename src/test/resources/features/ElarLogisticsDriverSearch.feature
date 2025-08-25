@@ -63,35 +63,35 @@ Feature: Validations for Elar Logistics Search Driver functionality
   @searchValidPhoneWithSpecPunctuationChar
   Scenario: Validating Search with valid phone number with specific punctuation
     And user clicks EMAIL or PHONE button
-    And user searches phone number "(123) 456-7890"
+    And user searches phone number "(234) 567-8900"
     Then user validates only drivers with provided Phone search criteria should be shown
 
   @searchValidPhoneWithoutSpecPunctuationChar
   Scenario: Validating Search with valid phone number without specific punctuation
     And user clicks EMAIL or PHONE button
-    And user searches phone number "1234567890"
+    And user searches phone number "2345678900"
     Then user validates only drivers with provided Phone search criteria should be shown
 
   @searchValidPhoneWithPlusOne
   Scenario: Validating Search with valid phone number with +1 in front
     And user clicks EMAIL or PHONE button
-    And user searches phone number "+1 (123) 456-7890"
+    And user searches phone number "1+ (234) 567-8900"
     Then user validates only drivers with provided Phone search criteria should be shown
 
   @searchInvalidPhoneWithMoreThanTenNum
   Scenario: Validating Search with invalid phone number with greater than ten numbers
     And user clicks EMAIL or PHONE button
-    And user searches phone number "12345678901"
+    And user searches phone number "23456789001"
     Then user validates that no drivers should be shown
 
   @searchInvalidPhoneWithLessThanTenNumWithSpecPunctuationChar
   Scenario: Validating Search with invalid Phone number with less than 10 numbers with specific punctuation characters
     And user clicks EMAIL or PHONE button
-    And user searches phone number "(123) 456"
+    And user searches phone number "(234) 567"
     Then user validates only drivers with provided Phone search criteria should be shown
 
   @searchInvalidPhoneWithLessThanTenNumWithoutSpecPunctuationChar
-  Scenario: Validating Search with invalid Phone number with less than 10 numbers with specific punctuation characters
+  Scenario: Validating Search with invalid Phone number with less than 10 numbers without specific punctuation characters
     And user clicks EMAIL or PHONE button
-    And user searches phone number "123456"
+    And user searches phone number "34564"
     Then user validates only drivers with provided Phone search criteria should be shown
