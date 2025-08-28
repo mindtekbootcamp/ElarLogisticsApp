@@ -16,15 +16,15 @@ public class CreateDriverResponse {
     private Integer id;
     private List<Object> schedule;
     private String full_name;
-    private boolean is_staff;
+    private Boolean is_staff;
     private String status;
     private List<Object> alerts;
     private String created_at;
     private String updated_at;
     private String driver_local_identifier;
-    private List<Object> contacts_phone;
-    private List<Object> contacts_email;
-    private List<Object> contacts_viber;
-    private List<Object> contacts_other;
+    private List<Contact> contacts_phone;
+    private List<Contact> contacts_email;
+    private List<Contact> contacts_viber;
+    private List<Contact> contacts_other;
 
 }
