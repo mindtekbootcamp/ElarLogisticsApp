@@ -22,7 +22,7 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--disable-notifications", "--guest");
-                    options.setHeadless(false);
+                    options.setHeadless(true);
                     driver = new ChromeDriver(options);
                     break;
                 case "edge":
