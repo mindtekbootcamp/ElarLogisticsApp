@@ -37,7 +37,7 @@ public class CreateAddressAPISteps {
 
         Map<String, Object> data=dataTable.asMap(String.class, Object.class);
 
-        CreateAddressRequest = new CreateAddressRequest();
+//        CreateAddressRequest = new CreateAddressRequest();
 
     }
     @Then("user validates create address status code {int}")
