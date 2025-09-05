@@ -7,9 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"rerun:target/rerun.txt", "json:target/cucumber.json"},
-        features = "src/test/resources/features/ElarLogisticsAddDriver.feature",
+        features = "src/test/resources/features",
         glue = "steps",
-        // tags = "@addDriver",
+         tags = "@addDriver",
         dryRun = false
 )
 public class Runner {
