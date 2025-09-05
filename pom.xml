@@ -80,7 +80,7 @@
                 <configuration>
                     <includes>
                         <include>
-                            **/Runner.java
+                            **/Runner*.java
                         </include>
                     </includes>
                 </configuration>
