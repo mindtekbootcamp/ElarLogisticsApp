@@ -61,7 +61,3 @@ Feature: Validating create address API
       | name     | Tom Jerry    |
     Then user validates create address status code 422
     Then user validates create address response body error message "String should have at most 5 characters"
-
-
-
-
