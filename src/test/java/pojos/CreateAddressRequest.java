@@ -15,7 +15,7 @@ public class CreateAddressRequest {
     private String name;
 
     public void setDefaultValues(){
-        address = "123 abc";
+        address = "123 Test Ave";
         city = "Chicago";
         state = "IL";
         zip_code = "60656";
