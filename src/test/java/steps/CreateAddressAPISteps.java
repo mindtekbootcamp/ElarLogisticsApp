@@ -8,8 +8,6 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import pojos.CreateAddressRequest;
 import pojos.CreateAddressResponse;
-import pojos.CreateDriverRequest;
-import pojos.CreateDriverResponse;
 import utilities.ConfigReader;
 
 import java.util.Map;
