@@ -16,6 +16,6 @@ public class CreateAddressResponse {
     private Integer id;
     private String uuid;
     private String created_at;
-    private String update_at;
+    private String updated_at;
 }
 
