@@ -6,13 +6,13 @@ Feature: Validations for Elar Logistics Search Driver functionality
     When user navigates to the Drivers page
     And user clicks on Search field
 
-  @searchValidID
+  @searchValidID @smoke
   Scenario: Validating Search with Valid ID
     And user clicks ID button
     And user enters ID "1234"
     Then user validates only drivers with provided ID search criteria should be shown
 
-  @searchInvalidIDWithLessThanFourChar
+  @searchInvalidIDWithLessThanFourChar @smoke
   Scenario: Validating Search with invalid ID with less than 4 characters
     And user clicks ID button
     And user enters ID "999"
@@ -48,7 +48,7 @@ Feature: Validations for Elar Logistics Search Driver functionality
     And user searches full name "!@#$%"
     Then user validates that no drivers should be shown
 
-  @searchValidEmail
+  @searchValidEmail @smoke
   Scenario: Validating Search with valid email
     And user clicks EMAIL or PHONE button
     And user searches email address "driver@driver.com"
