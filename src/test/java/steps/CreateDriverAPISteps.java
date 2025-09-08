@@ -21,12 +21,7 @@ public class CreateDriverAPISteps {
     CreateDriverRequest createDriverRequest;
     int driverId;
 
-    String token="Access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
-            ".eyJzdWIiOiJzdHVkZW50QG1pbmR0ZWsiLCJoZWFkZXIiOnsidHlwZSI6IkFjY2VzcyIsImFsZyI6IkhTMjU2In0sImV4cCI6MTc1NjQ5ODAzM30" +
-            ".M8HHFus3s9fuelqrcTRdMTvsnoXCYB6sXoaHgiGN5dA; " +
-            "Refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
-            ".eyJzdWIiOiJzdHVkZW50QG1pbmR0ZWsiLCJoZWFkZXIiOnsidHlwZSI6IlJlZnJlc2giLCJhbGciOiJIUzI1NiJ9LCJleHAiOjE3NTY0OTgwMzN9" +
-            ".0e4VgyhlRMo3IpvnA6bOL5mX352yrZxdDJ-uo45E6rE";
+    String token="Access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHVkZW50QG1pbmR0ZWsiLCJoZWFkZXIiOnsidHlwZSI6IkFjY2VzcyIsImFsZyI6IkhTMjU2In0sImV4cCI6MTc1NzQzOTgyOH0.OSwoLKDCjF0XUgg9rGz85y60M4XOAG8Qy_MAXyclA0E; Refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHVkZW50QG1pbmR0ZWsiLCJoZWFkZXIiOnsidHlwZSI6IlJlZnJlc2giLCJhbGciOiJIUzI1NiJ9LCJleHAiOjE3NTc0Mzk4Mjh9.PSIIii8IImd03xKPc0VoqR7s2vKaihEolU5G1ZtfPUE";
 
     @Given("user sends post api call with data")
     public void user_sends_post_api_call_with_data(DataTable dataTable) {
