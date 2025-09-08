@@ -1,6 +1,7 @@
-@createAddressAPI
+@regression @createAddressAPI
 Feature: Validating create address API
 
+  @smoke
   Scenario: Validating Create Address API call with valid data
     Given user sends create address post api call with data
       | address  | 123 Test Ave |

@@ -1,6 +1,7 @@
-@createDriverAPI
+@regression @createDriverAPI
 Feature: Validating create driver API
 
+  @smoke
   Scenario: Validating Create Driver API call with valid data
     Given user sends post api call with data
       | full_name                 | John Doe   |
