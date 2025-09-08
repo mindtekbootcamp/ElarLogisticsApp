@@ -1,6 +1,7 @@
-@createDriverAPI
+@regression @createDriverAPI
 Feature: Validating create driver API
 
+  @smoke
   Scenario: Validating Create Driver API call with valid data
     Given user sends post api call with data
       | full_name                 | John Doe   |
@@ -11,6 +12,7 @@ Feature: Validating create driver API
     When user gets created driver with get call
     Then user validates created driver data in get call response
 
+  @smoke
   Scenario: Validating Create Driver API call invalid full_name no characters
     Given user sends post api call with data
       | full_name                 |            |
@@ -56,6 +58,7 @@ Feature: Validating create driver API
     Then user validates status code 400
     Then user validates response body error message "Select a valid date"
 
+  @smoke
   Scenario: Validating Create Driver API call with invalid medical_certification_exp expired date
     Given user sends post api call with data
       | full_name                 | John Doe   |

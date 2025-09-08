@@ -6,7 +6,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     When user navigates to the Drivers page
     And user clicks on Add Driver button
 
-  @createMinimumRequirements
+  @createMinimumRequirements @smoke
   Scenario: Validating Create Button Minimum Requirements
     And user clicks on Create button
     Then user validates error message above Create button is shown "Required"
@@ -22,7 +22,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user clicks on Create button
     Then user validates success message is displayed "Driver Created Successfully"
 
-  @invalidFullNameMoreThanMax
+  @invalidFullNameMoreThanMax @smoke
   Scenario: Validating invalid Full Name with more than 50 characters
     And user enters full name "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And user selects driving license expiration date "09/01/2025"
