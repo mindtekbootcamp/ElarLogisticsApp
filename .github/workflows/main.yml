@@ -1,14 +1,19 @@
-name: Smoke Tests
+name: Tests
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # every 6 hours
-  workflow_dispatch:        # allows manual trigger
+    - cron: "0 */6 * * *"   # example
+  workflow_dispatch:
 
 jobs:
-  smoke:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run Smoke Tests
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build & test
         run: mvn test
