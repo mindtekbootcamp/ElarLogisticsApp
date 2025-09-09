@@ -1,4 +1,4 @@
-name: ElarAppAutomationSmoke
+name: ElarAppAutomationRegression
 
 on:
   schedule:
