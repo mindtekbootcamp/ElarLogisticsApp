@@ -1,4 +1,4 @@
-name: Tests
+name: ElarAppAutomationSmoke
 
 on:
   schedule:
@@ -17,3 +17,7 @@ jobs:
           cache: maven
       - name: Build & test
         run: mvn test -Psmoke
+      - name: Publish Cucumber Report to Annotations
+        uses: deblockt/cucumber-report-annotations-action@v1.4
+        with:
+          path: target/cucumber.json
