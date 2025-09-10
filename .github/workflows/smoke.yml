@@ -5,16 +5,16 @@ on:
     - cron: "0 6 * * *"
   workflow_dispatch:
 
-# Needed for annotations and Pages deploy
 permissions:
   contents: read
-  checks: write        # for cucumber annotations
-  pages: write         # for deploy-pages
-  id-token: write      # for deploy-pages OIDC
+  checks: write         # for cucumber annotations
+  pages: write          # for deploy-pages (optional)
+  id-token: write       # for deploy-pages OIDC (optional)
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+# If your project is inside a folder, keep this; otherwise remove it.
+defaults:
+  run:
+    working-directory: ELarLogisticsApp   # <-- change or remove if not needed
 
 jobs:
   build:
@@ -28,26 +28,28 @@ jobs:
           java-version: '21'
           cache: maven
 
-      # 1) Run tests and produce cucumber.json
-      - name: Build & test
-        run: mvn clean test -Psmoke -Dcucumber.plugin="pretty, json:${PWD}/target/cucumber.json"
+      # 1) Run tests -> produce target/cucumber.json
+      - name: Build & Test (produce JSON)
+        run: |
+          mvn -B clean test -Psmoke \
+            -Dcucumber.plugin="pretty, json:target/cucumber.json"
 
-      # 2) Publish annotations in the run
-      - name: Publish Cucumber Report to Annotations
+      # 2) Inline annotations from cucumber.json
+      - name: Publish Cucumber annotations
         if: always()
         uses: deblockt/cucumber-report-annotations-action@v1.4
         with:
           path: target/cucumber.json
           access-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3) Generate HTML report from JSON
+      # 3) Generate Masterthought HTML from JSON (same as local: mvn verify -DskipTests)
       - name: Generate Cucumber HTML report
         if: always()
-        run: mvn -B -DskipTests -DbuildNumber=${{ github.run_number }} verify
-        # requires the maven-cucumber-reporting plugin in your pom.xml
-        # output -> target/cucumber-report/index.html
+        run: mvn -B verify -DskipTests -DbuildNumber=${{ github.run_number }}
+        # Requires maven-cucumber-reporting configured in pom.xml
+        # Output -> target/cucumber-report/index.html
 
-      # 4) Upload HTML report as a regular artifact (downloadable)
+      # 4) Upload HTML as artifact
       - name: Upload Cucumber HTML (artifact)
         if: always()
         uses: actions/upload-artifact@v4
@@ -55,20 +57,20 @@ jobs:
           name: cucumber-html
           path: target/cucumber-report
 
-      # 5) Stage for GitHub Pages
+      # 5) (Optional) Publish the HTML to GitHub Pages
       - name: Upload Pages artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
-          path: target/cucumber-report   # must exist from step 3
+          path: target/cucumber-report
 
+  # Optional Pages deployment job
   deploy:
-    # Publishes the artifact from the "build" job to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - id: deployment
+      - id: deploy
         uses: actions/deploy-pages@v4
