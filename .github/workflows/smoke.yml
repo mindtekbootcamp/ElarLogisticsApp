@@ -30,7 +30,7 @@ jobs:
 
       # 1) Run tests and produce cucumber.json
       - name: Build & test
-        run: mvn -B test -Psmoke -Dcucumber.plugin="pretty, json:target/cucumber.json"
+        run: mvn clean test -Psmoke
 
       # 2) Publish annotations in the run
       - name: Publish Cucumber Report to Annotations
