@@ -18,6 +18,7 @@ jobs:
       - name: Build & test
         run: mvn test -Psmoke
       - name: Publish Cucumber Report to Annotations
+        if: always()
         uses: deblockt/cucumber-report-annotations-action@v1.4
         with:
           path: target/cucumber.json
