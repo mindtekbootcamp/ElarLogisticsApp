@@ -90,14 +90,30 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>4.5.0</version>
+                <version>5.8.0</version> <!-- use a stable version -->
                 <executions>
                     <execution>
-                        <id>execution</id>
+                        <id>cucumber-html-report</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <!-- where to output the HTML report -->
+                            <outputDirectory>target/cucumber-report</outputDirectory>
+
+                            <!-- point to your cucumber.json -->
+                            <jsonFiles>
+                                <param>target/cucumber.json</param>
+                            </jsonFiles>
+
+                            <projectName>ELar Logistics Smoke</projectName>
+                            <buildNumber>${project.version}</buildNumber>
+
+                            <!-- optional but nice -->
+                            <checkBuildResult>false</checkBuildResult>
+                            <skipEmptyJSONFiles>false</skipEmptyJSONFiles>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
