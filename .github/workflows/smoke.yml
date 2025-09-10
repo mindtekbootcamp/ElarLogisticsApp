@@ -1,9 +1,13 @@
-name: ElarAppAutomationSmoke
+name: ELarAppAutomationSmoke
 
 on:
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write     # <-- required for posting annotations
 
 jobs:
   tests:
@@ -16,10 +20,15 @@ jobs:
           java-version: '21'
           cache: maven
       - name: Build & test
-        run: mvn test -Psmoke
+        run: mvn -B test -Psmoke -Dcucumber.plugin="pretty, json:target/cucumber.json"
       - name: Publish Cucumber Report to Annotations
         if: always()
         uses: deblockt/cucumber-report-annotations-action@v1.4
         with:
           path: target/cucumber.json
-          token: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cucumber-json
+          path: target/cucumber.json
