@@ -5,38 +5,70 @@ on:
     - cron: "0 6 * * *"
   workflow_dispatch:
 
+# Needed for annotations and Pages deploy
 permissions:
   contents: read
-  checks: write     # <-- required for posting annotations
+  checks: write        # for cucumber annotations
+  pages: write         # for deploy-pages
+  id-token: write      # for deploy-pages OIDC
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
           cache: maven
+
+      # 1) Run tests and produce cucumber.json
       - name: Build & test
         run: mvn -B test -Psmoke -Dcucumber.plugin="pretty, json:target/cucumber.json"
+
+      # 2) Publish annotations in the run
       - name: Publish Cucumber Report to Annotations
         if: always()
         uses: deblockt/cucumber-report-annotations-action@v1.4
         with:
           path: target/cucumber.json
           access-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/upload-artifact@v4
+
+      # 3) Generate HTML report from JSON
+      - name: Generate Cucumber HTML report
         if: always()
+        run: mvn -B -DskipTests -DbuildNumber=${{ github.run_number }} verify
+        # requires the maven-cucumber-reporting plugin in your pom.xml
+        # output -> target/cucumber-report/index.html
+
+      # 4) Upload HTML report as a regular artifact (downloadable)
+      - name: Upload Cucumber HTML (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: cucumber-json
-          path: target/cucumber.json
+          name: cucumber-html
+          path: target/cucumber-report
+
+      # 5) Stage for GitHub Pages
       - name: Upload Pages artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
-          path: target/cucumber-report
-      - name: Deploy to GitHub Pages
-        if: always()
+          path: target/cucumber-report   # must exist from step 3
+
+  deploy:
+    # Publishes the artifact from the "build" job to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
         uses: actions/deploy-pages@v4
