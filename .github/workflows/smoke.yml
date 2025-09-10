@@ -43,7 +43,7 @@ jobs:
       # 3) Generate HTML report from JSON
       - name: Generate Cucumber HTML report
         if: always()
-        run: mvn -B -DskipTests -DbuildNumber=${{ github.run_number }} verify
+        run: mvn verify -DskipTests
         # requires the maven-cucumber-reporting plugin in your pom.xml
         # output -> target/cucumber-report/index.html
 

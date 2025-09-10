@@ -53,6 +53,13 @@
             <version>7.15.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -90,30 +97,14 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.8.0</version> <!-- use a stable version -->
+                <version>3.15.0</version>
                 <executions>
                     <execution>
-                        <id>cucumber-html-report</id>
+                        <id>execution</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <configuration>
-                            <!-- where to output the HTML report -->
-                            <outputDirectory>target/cucumber-report</outputDirectory>
-
-                            <!-- point to your cucumber.json -->
-                            <jsonFiles>
-                                <param>target/cucumber.json</param>
-                            </jsonFiles>
-
-                            <projectName>ELar Logistics Smoke</projectName>
-                            <buildNumber>${project.version}</buildNumber>
-
-                            <!-- optional but nice -->
-                            <checkBuildResult>false</checkBuildResult>
-                            <skipEmptyJSONFiles>false</skipEmptyJSONFiles>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
