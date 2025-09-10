@@ -32,3 +32,11 @@ jobs:
         with:
           name: cucumber-json
           path: target/cucumber.json
+      - name: Upload Pages artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/cucumber-report
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: actions/deploy-pages@v4
