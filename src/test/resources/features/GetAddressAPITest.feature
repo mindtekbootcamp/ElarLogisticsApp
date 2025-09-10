@@ -1,6 +1,7 @@
-@getAddressAPI
+@getAddressAPI @regression
 Feature: Validating Get Address API
 
+  @smoke
   Scenario Outline: Validate Get Address API call with valid order_by and size parameters
     Given user sends Address Get API call with valid order_by "<order_by>" parameters and size 50
     Then user validates get address status code 200
@@ -17,6 +18,7 @@ Feature: Validating Get Address API
     Then user validates get address status code 422
     Then user validates get address response body error message "Value error, null is not a valid ordering field."
 
+@smoke
   Scenario Outline: Validate Get Address API call with valid order_by parameter id and valid min and max sizes
     Given user sends Address Get API call with valid order_by parameter id and valid sizes <size>
     Then user validates get address status code 200
