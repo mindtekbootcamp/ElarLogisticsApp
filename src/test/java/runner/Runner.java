@@ -6,11 +6,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"rerun:target/rerun.txt", "json:target/cucumber.json"},
+        plugin = {"pretty","rerun:target/rerun.txt", "json:target/cucumber.json"},
         features = "src/test/resources/features",
-//        glue = "steps",
-        dryRun = true
+        glue = "steps",
+        tags = "@getAddressAPI",
+        dryRun = false
 )
+
 public class Runner {
 }
 
