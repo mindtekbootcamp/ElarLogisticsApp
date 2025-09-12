@@ -1,23 +1,71 @@
-name: ElarAppAutomationSmoke
+name: ELarAppAutomationSmoke
 
 on:
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+  checks: write         # for cucumber annotations
+  pages: write          # for deploy-pages (optional)
+  id-token: write       # for deploy-pages OIDC (optional)
+
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Build & test
-        run: mvn test -Psmoke
-      - name: Publish Cucumber Report to Annotations
+
+      # 1) Run tests -> produce target/cucumber.json
+      - name: Build & Test (produce JSON)
+        run: |
+          mvn -B clean test -Psmoke \
+            -Dcucumber.plugin="pretty, json:target/cucumber.json"
+
+      # 2) Inline annotations from cucumber.json
+      - name: Publish Cucumber annotations
+        if: always()
         uses: deblockt/cucumber-report-annotations-action@v1.4
         with:
           path: target/cucumber.json
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3) Generate Masterthought HTML from JSON (same as local: mvn verify -DskipTests)
+      - name: Generate Cucumber HTML report
+        if: always()
+        run: mvn -B verify -DskipTests -DbuildNumber=${{ github.run_number }}
+        # Requires maven-cucumber-reporting configured in pom.xml
+        # Output -> target/cucumber-report/index.html
+
+      # 4) Upload HTML as artifact
+      - name: Upload Cucumber HTML (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-html
+          path: target/cucumber-reports
+
+      # 5) (Optional) Publish the HTML to GitHub Pages
+      - name: Upload Pages artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/cucumber-reports
+
+  # Optional Pages deployment job
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
