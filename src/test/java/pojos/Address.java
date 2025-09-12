@@ -1,0 +1,26 @@
+package pojos;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class Address {
+    private String state;
+    private Integer id;
+    private String uuid;
+    private String full_address;
+    private String created_at;
+    private String updated_at;
+
+    public void setDefaultValues() {
+        state = "IL";
+        id = 4119;
+        uuid = "1a5558f6-6d64-46f4-96df-5d6ce33b2f35";
+        full_address = "IL";
+        created_at = "2025-08-28T22:14:52.953863Z";
+        updated_at = "2025-08-28T22:14:53.057896Z";
+    }
+}

@@ -38,3 +38,5 @@ Feature: Validating Get Address API
     Given user sends Address Get API call with valid order_by parameter id and invalid larger size 101
     Then user validates get address status code 422
     Then user validates get address response body error message "Input should be less than or equal to 100"
+
+  Thisisafullnamethatislongerthanfiftycharactersinlength
