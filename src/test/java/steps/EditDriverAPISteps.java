@@ -12,6 +12,7 @@ import utilities.DataLoader;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import static io.restassured.RestAssured.given;
@@ -116,9 +117,9 @@ public class EditDriverAPISteps {
 
     @Then("user validates updated_at field having the correct date")
     public void user_validates_updated_at_field_having_the_correct_date() {
-        LocalDate localDate = Instant.now().atZone(ZoneOffset.UTC).toLocalDate();
-        String currentDate = localDate.toString();
-        Assert.assertEquals(currentDate, getResponse.body().jsonPath().get("updated_at").toString().substring(0, 10));
+        LocalDateTime localDateTime = Instant.now().atZone(ZoneOffset.UTC).toLocalDateTime();
+        String currentDate = localDateTime.toString();
+        Assert.assertEquals(currentDate, getResponse.body().jsonPath().get("updated_at").toString());
     }
 
     @Then("user validates Edit Driver full_name response status code {int}")
