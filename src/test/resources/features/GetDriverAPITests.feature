@@ -31,7 +31,7 @@ Feature: Validating Get Driver API
   @tc30 @smoke
   Scenario Outline: Validate Get Driver API call with valid is_staff and valid order_by id parameters and min and max size parameters
     Given user sends Get Driver API call with valid is_staff and valid order_by "id" parameters and min and max sizes <size>
-    Then user validates get address status code 200
+    Then user validates Get Driver status code 200
     Examples:
       | size |
       | 1    |

@@ -66,18 +66,7 @@ public class GetDriverAPISteps {
                 .when().get("/drivers");
         getResponse.then().log().all();
     }
-    @Given("user sends Get Driver API call with valid is_staff and valid order_by {string} parameters and min and max sizes {int}")
-    public void user_sends_get_driver_api_call_with_valid_is_staff_and_valid_order_by_parameters_and_min_and_max_sizes(String order_by, Integer size) {
-        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
-                .and().header("Accept", "application/json")
-                .and().header("Cookie", token)
-                .and().queryParam("is_staff", Constants.ISSTAFF_TRUE)
-                .and().queryParam("order_by", order_by)
-                .and().queryParam("size", size)
-                .and().log().all()
-                .when().get("/drivers");
-        getResponse.then().log().all();
-    }
+
     @Given("user sends Get Driver API call with valid is_staff and valid order_by {string} parameters and {string} size parameter")
     public void user_sends_get_driver_api_call_with_valid_is_staff_and_valid_order_by_parameters_and_size_parameter(String order_by, String size) {
         getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
@@ -104,6 +93,18 @@ public class GetDriverAPISteps {
     }
     @Given("user sends Get Driver API call with valid is_staff and valid order_by {string} parameters and invalid larger size {int}")
     public void user_sends_get_driver_api_call_with_valid_is_staff_and_valid_order_by_parameters_and_invalid_larger_size(String order_by, Integer size) {
+        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
+                .and().header("Accept", "application/json")
+                .and().header("Cookie", token)
+                .and().queryParam("is_staff", Constants.ISSTAFF_TRUE)
+                .and().queryParam("order_by", order_by)
+                .and().queryParam("size", size)
+                .and().log().all()
+                .when().get("/drivers");
+        getResponse.then().log().all();
+    }
+    @Given("user sends Get Driver API call with valid is_staff and valid order_by {string} parameters and min and max sizes {int}")
+    public void user_sends_get_driver_api_call_with_valid_is_staff_and_valid_order_by_parameters_and_min_and_max_sizes(String order_by, Integer size) {
         getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
                 .and().header("Accept", "application/json")
                 .and().header("Cookie", token)
