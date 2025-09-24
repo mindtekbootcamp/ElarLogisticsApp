@@ -31,11 +31,10 @@ public class GetDriverAPISteps {
     }
     @Given("user sends Get Driver API call with {string} is_staff parameter and valid order_by {string} and size {int} parameters")
     public void user_sends_get_driver_api_call_with_is_staff_parameter_and_valid_order_by_parameter_and_size_parameters(String is_staff, String order_by, Integer size) {
-        boolean isStaff = Boolean.parseBoolean(is_staff);
         getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
                 .and().header("Accept", "application/json")
                 .and().header("Cookie", token)
-                .and().queryParam("is_staff", isStaff)
+                .and().queryParam("is_staff", is_staff)
                 .and().queryParam("order_by", order_by)
                 .and().queryParam("size", size)
                 .and().log().all()
