@@ -1,4 +1,4 @@
-@regression @elar @login
+@regression @loginUI
 Feature: Validations for Elar Logistics Login Functionalities
 
   Background: Setup
