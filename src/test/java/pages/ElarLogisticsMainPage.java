@@ -20,4 +20,7 @@ public class ElarLogisticsMainPage {
 
     @FindBy(xpath = "//p[text()='Drivers']")
     public WebElement mainPageDriversBtn;
+
+    @FindBy(xpath = "//p[text()='Carriers']")
+    public WebElement mainPageCarrierBtn;
 }
