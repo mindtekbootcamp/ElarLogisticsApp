@@ -18,33 +18,36 @@ public class BrowserUtils {
 
     /**
      * Creates a Select object and selects an option based on the provided "value" parameter
+     *
      * @param dropdown
      * @param value
      */
-    public static void selectByValue(WebElement dropdown, String value){
+    public static void selectByValue(WebElement dropdown, String value) {
         Select select = new Select(dropdown);
         select.selectByValue(value);
     }
 
     /**
      * Waits for provided webelement to be clickable
+     *
      * @param element
      */
-    public static  void waitForElementToBeClickable(WebElement element){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+    public static void waitForElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     /**
      * Scrolls the page until the provided element is in view
      */
-    public static  void scrollToBottom(){
+    public static void scrollToBottom() {
         JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
         jse.executeScript("window.scrollBy(0,document.body.scrollHeight");
     }
 
     /**
      * Takes a screenshot of the browser at the moment of execution
+     *
      * @param fileName
      * @throws IOException
      */
@@ -57,32 +60,35 @@ public class BrowserUtils {
 
     /**
      * Generates a random email using the provided firstName and lastName paramenters
+     *
      * @param firstName
      * @param lastName
      * @return
      */
-    public static String randomEmailGenerator(String firstName, String lastName){
+    public static String randomEmailGenerator(String firstName, String lastName) {
         Random random = new Random();
         int randomNum = random.nextInt(99999);
-        String email = randomNum+firstName+"."+lastName+"@gmail.com";
+        String email = randomNum + firstName + "." + lastName + "@gmail.com";
         System.out.println(email);
         return email;
     }
 
     /**
      * Generates a UUID random email
+     *
      * @return
      */
-    public static String uuidEmailGenerator(){
+    public static String uuidEmailGenerator() {
         UUID uuid = UUID.randomUUID();
         return "user-" + uuid + "@gmail.com";
     }
 
     /**
      * Generates a UUID random ID
+     *
      * @return
      */
-    public static String uuidIDGenerator(){
+    public static String uuidIDGenerator() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
@@ -90,22 +96,24 @@ public class BrowserUtils {
     /**
      *
      */
-    public static void removeGoogleAds(){
+    public static void removeGoogleAds() {
         JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
         jse.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
     }
 
     /**
      * Scrolls the page using the provided pixel count
+     *
      * @param pixels
      */
-    public static void scrollBy(Integer pixels){
+    public static void scrollBy(Integer pixels) {
         JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
-        jse.executeScript("window.scrollBy(0,"+pixels+")", "");
+        jse.executeScript("window.scrollBy(0," + pixels + ")", "");
     }
 
     /**
      * Scrolls the page until the provided element is in view
+     *
      * @param element
      */
     public static void scrollingIntoView(WebElement element) throws InterruptedException {

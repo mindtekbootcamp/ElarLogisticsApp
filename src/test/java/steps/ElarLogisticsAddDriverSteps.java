@@ -27,9 +27,7 @@ public class ElarLogisticsAddDriverSteps {
     public void user_logs_in_to_to_elar_logistics_app() {
         driver.get(ConfigReader.getProperty("elarlogisticsURL"));
         ElarLogisticsLoginPage elarLogisticsLoginPage = new ElarLogisticsLoginPage();
-        elarLogisticsLoginPage.usernameInput.sendKeys(ConfigReader.getProperty("ElarUsername"));
-        elarLogisticsLoginPage.passwordInput.sendKeys(ConfigReader.getProperty("ElarPassword"));
-        elarLogisticsLoginPage.loginBtn.click();
+        elarLogisticsLoginPage.loginUser();
     }
 
     @When("user navigates to the Drivers page")
@@ -40,7 +38,7 @@ public class ElarLogisticsAddDriverSteps {
     }
 
     @When("user clicks on Add Driver button")
-    public void user_clicks_on_add_driver_button(){
+    public void user_clicks_on_add_driver_button() {
         ElarLogisticsDriverPage elarLogisticsDriverPage = new ElarLogisticsDriverPage();
         BrowserUtils.waitForElementToBeClickable(elarLogisticsDriverPage.addDriverBtn);
         elarLogisticsDriverPage.addDriverBtn.click();
@@ -73,7 +71,7 @@ public class ElarLogisticsAddDriverSteps {
     @When("user enters input into Logbook# field")
     public void user_enters_input_into_logbook_field() throws InterruptedException {
         BrowserUtils.scrollingIntoView(elarLogisticsAddDriverPage.logbookNumberTextBox);
-        elarLogisticsAddDriverPage.logbookNumberTextBox.sendKeys(new Random().nextInt(10000)+"");
+        elarLogisticsAddDriverPage.logbookNumberTextBox.sendKeys(new Random().nextInt(10000) + "");
     }
 
     @When("user enters input into Logbook email field {string}")
@@ -97,7 +95,7 @@ public class ElarLogisticsAddDriverSteps {
     @Then("user validates error message for email with special characters is displayed {string}")
     public void user_validates_error_message_for_email_with_special_characters_is_displayed(String expectedErrorMessage) {
         String actualErrorMessage = elarLogisticsAddDriverPage.correctEmailErrorMessage.getText();
-        Assert.assertEquals(expectedErrorMessage,actualErrorMessage);
+        Assert.assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 
     @When("user enters phone number {string}")
@@ -106,14 +104,11 @@ public class ElarLogisticsAddDriverSteps {
         elarLogisticsAddDriverPage.phoneTextBox.sendKeys(phoneNumber);
     }
 
-    /**
-     *
-     * @param expectedErrorMessage
-     */
     @Then("user validates error message for phone number is displayed {string}")
     public void user_validates_error_message_for_phone_number_is_displayed(String expectedErrorMessage) {
-        //String actualErrorMessage = elarLogisticsAddDriverPage.error;
-        //Assert.assertEquals(expectedErrorMessage, actualErrorMessage);
+        // There was a bug in the UI where the error message for phone number did not appear.
+//        String actualErrorMessage = elarLogisticsAddDriverPage.error;
+//        Assert.assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 
     @Then("user validates error message for email with more than 50 characters is displayed {string}")
@@ -181,8 +176,7 @@ public class ElarLogisticsAddDriverSteps {
 
     @When("user clicks on Create button")
     public void user_clicks_on_create_button() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", elarLogisticsAddDriverPage.createNewBtn);
+        BrowserUtils.scrollingIntoView(elarLogisticsAddDriverPage.createNewBtn);
         BrowserUtils.waitForElementToBeClickable(elarLogisticsAddDriverPage.createNewBtn);
         elarLogisticsAddDriverPage.createNewBtn.click();
         Thread.sleep(1000);
@@ -228,6 +222,7 @@ public class ElarLogisticsAddDriverSteps {
     public void user_validates_error_message_for_medical_license_past_date_is_displayed(String expectedErrorMessage) {
         Assert.assertFalse(elarLogisticsAddDriverPage.driverCreatedSuccessfullyMessage.isDisplayed());
     }
+
     @Then("user validates error message above Create button is shown {string}")
     public void user_validates_error_message_above_create_button_is_shown(String expectedErrorMessage) {
         String actualErrorMessage = elarLogisticsAddDriverPage.requiredErrorMessage.getText();

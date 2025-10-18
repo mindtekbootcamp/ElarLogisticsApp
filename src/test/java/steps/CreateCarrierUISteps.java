@@ -5,15 +5,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.ElarAddCarrierPage;
 import pages.ElarCarriersPage;
 import pages.ElarLogisticsMainPage;
 import utilities.BrowserUtils;
-import utilities.CarrierAPIUtils;
+
+import utilities.DataTableUtils;
 import utilities.Driver;
+
 
 import java.util.Map;
 
@@ -32,58 +34,24 @@ public class CreateCarrierUISteps {
     public void user_clicks_on_add_carrier_button() throws InterruptedException {
         ElarCarriersPage elarCarriersPage = new ElarCarriersPage();
         Thread.sleep(1000);
-        //BrowserUtils.waitForElementToBeClickable(elarCarriersPage.addCarrierBtn);
-        JavascriptExecutor js=((JavascriptExecutor) driver);
-        js.executeScript("arguments[0].click();",elarCarriersPage.addCarrierBtn);
-        //elarCarriersPage.addCarrierBtn.click();
+        BrowserUtils.waitForElementToBeClickable(elarCarriersPage.addCarrierBtn);
+        elarCarriersPage.addCarrierBtn.click();
     }
 
     @When("user enters required data fields")
     public void user_enters_required_data_fields(DataTable dataTable) throws InterruptedException {
         Map<String, Object> data = dataTable.asMap(String.class, Object.class);
-        String carrier_name = "";
-        String abbreviation = "";
-        String mc_number = "";
-        String dot_number = "";
-        if (getTableValue(data, "carrier_name").equals("$unique Co")) {
-            carrier_name = CarrierAPIUtils.uuidCarrierGenerator();
-        } else {
-            carrier_name = getTableValue(data,"carrier_name");
-        }
-        elarAddCarrierPage.carrierNameInput.sendKeys(carrier_name);
-
-        if (getTableValue(data, "abbreviation").equals("$unique short")) {
-            abbreviation = CarrierAPIUtils.randomAbbreviationGenerator();
-        } else {
-            abbreviation = getTableValue(data,"abbreviation");
-        }
-        elarAddCarrierPage.abbreviationInput.sendKeys(abbreviation);
-
+        elarAddCarrierPage.carrierNameInput.sendKeys(DataTableUtils.compareIfUnique(data, "carrier_name", "$unique Co"));
+        elarAddCarrierPage.abbreviationInput.sendKeys(DataTableUtils.compareIfUnique(data, "abbreviation", "$unique Co"));
         elarAddCarrierPage.companyTypeDropDown.click();
         WebElement brokerCompanySelect = driver.findElement(By.xpath("//li[@data-value='" + data.get("carrier_type") + "']"));
         brokerCompanySelect.click();
-
-        if (getTableValue(data, "mc_number").equals("$unique long")) {
-            mc_number = CarrierAPIUtils.randomNumberGenerator();
-        } else {
-            mc_number = data.get("mc_number").toString();
-        }
-        elarAddCarrierPage.mcNumInput.sendKeys(mc_number);
-
-        if (getTableValue(data, "dot_number").equals("$unique long")) {
-            dot_number = CarrierAPIUtils.randomNumberGenerator();
-        } else {
-            dot_number = data.get("dot_number").toString();
-        }
-        elarAddCarrierPage.dotNumInput.sendKeys(dot_number);
-
+        elarAddCarrierPage.mcNumInput.sendKeys(DataTableUtils.compareIfUnique(data, "mc_number", "$unique long"));
+        elarAddCarrierPage.dotNumInput.sendKeys(DataTableUtils.compareIfUnique(data, "dot_number", "$unique long"));
         BrowserUtils.scrollingIntoView(elarAddCarrierPage.policyNumberInput);
-
         elarAddCarrierPage.insuranceInput.sendKeys(data.get("insurance").toString());
-
         elarAddCarrierPage.policyExpirationInput.click();
         elarAddCarrierPage.policyExpirationInput.sendKeys(data.get("policy_expiration").toString());
-
         elarAddCarrierPage.policyNumberInput.sendKeys(data.get("policy_number").toString());
     }
 
@@ -99,9 +67,7 @@ public class CreateCarrierUISteps {
 
     @When("user clicks Create New Button for Carriers")
     public void user_clicks_create_new_button_for_carriers() throws InterruptedException {
-        JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
-        jse.executeScript("arguments[0].scrollIntoView(true);", elarAddCarrierPage.createNewBtn);
-        Thread.sleep(1000);
+        BrowserUtils.scrollingIntoView(elarAddCarrierPage.createNewBtn);
         elarAddCarrierPage.createNewBtn.click();
     }
 
@@ -139,13 +105,5 @@ public class CreateCarrierUISteps {
     @Then("user validates Carrier error message for Abbreviation with special characters {string}")
     public void user_validates_carrier_error_message_for_abbreviation_with_special_characters(String expectedErrorMessage) {
         Assert.assertEquals(expectedErrorMessage, elarAddCarrierPage.specialCharAbbrevErrorMsg.getText());
-    }
-
-    public String getTableValue(Map<String, Object> data, String key) {
-        String name;
-        if (data.get(key) == null) name = "";
-        else if (data.get(key).equals("null")) name = null;
-        else name = data.get(key).toString();
-        return name;
     }
 }

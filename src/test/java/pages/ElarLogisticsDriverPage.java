@@ -42,4 +42,8 @@ public class ElarLogisticsDriverPage {
 
     @FindBy(xpath = "(//div[@role='rowgroup'])[2]//div[@data-field='phone']/div")
     public List<WebElement> searchResultPhones;
+
+    public void searchResults(){
+
+    }
 }

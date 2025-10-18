@@ -1,7 +1,7 @@
-@regression @createCarrierAPI
-Feature: Validating Post Carrier API
+@regression @createCarrierAPI1
+Feature: Validating Post Carrier API for Name, Company type, and Abbreviation
 
-  @tc34
+  @tc34 @smoke
   Scenario Outline: Validate Post Driver API call with valid name and abbreviation and 3 Carrier Types
     Given user sends Post Driver API call with valid name and abbreviation and 3 carrier types "<carrier_type>"
     Then user validates Post Carrier status code 200

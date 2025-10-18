@@ -3,7 +3,7 @@ package pojos;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import utilities.CarrierAPIUtils;
+import utilities.CarrierUtils;
 
 @Getter
 @Setter
@@ -22,12 +22,12 @@ public class CreateCarrierRequest {
     private String policy_number;
 
     public void setDefaultValues() {
-        carrier_name = CarrierAPIUtils.uuidCarrierGenerator();
+        carrier_name = CarrierUtils.uuidCarrierGenerator();
         carrier_type = "Broker company";
-        abbreviation = CarrierAPIUtils.randomAbbreviationGenerator();
+        abbreviation = CarrierUtils.randomThreeDigitGenerator();
         status = "Active";
-        mc_number = CarrierAPIUtils.randomNumberGenerator();
-        dot_number = CarrierAPIUtils.randomNumberGenerator();
+        mc_number = CarrierUtils.randomFiveDigitGenerator();
+        dot_number = CarrierUtils.randomFiveDigitGenerator();
         ifta = "false";
         address_id = 4187;
         insurance = "Cucumber Insurance";
