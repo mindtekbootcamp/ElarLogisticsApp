@@ -17,6 +17,7 @@ public class DataLoader {
     public static CreateCarrierRequest createCarrierRequest;
     public static CreateDriverRequest createDriverRequest;
     public static EditDriverRequest editDriverRequest;
+    public static String token;
 
 
     static {

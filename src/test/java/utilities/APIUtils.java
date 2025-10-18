@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class APIUtils {
 
-    public static String token = ConfigReader.getProperty("ElarAPIToken");
+    public static String token = DataLoader.token;
 
     public static void getCall(Map<String, Object> queryParams, String endpoint) {
 
