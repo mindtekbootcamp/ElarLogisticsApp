@@ -4,79 +4,53 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.junit.Assert;
-import utilities.ConfigReader;
+import utilities.APIUtils;
 
-import static io.restassured.RestAssured.given;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class GetAddressAPISteps {
 
     Response getResponse;
 
-    String token = ConfigReader.getProperty("ElarAPIToken");
-
     @Given("user sends Address Get API call with valid order_by {string} parameters and size 50")
     public void user_sends_address_get_api_call_with_valid_order_by_parameters_and_size(String order_by) {
-        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
-                .and().header("Accept", "application/json")
-                .and().header("Content-Type", "application/json")
-                .and().header("Cookie", token)
-                .and().queryParam("order_by",order_by)
-                .and().queryParam("size", 50)
-                .and().log().all()
-                .when().get("/addresses/");
-        getResponse.then().log().all();
+        Map<String, Object> queryParams = new HashMap<>();
+        queryParams.put("order_by", order_by);
+        queryParams.put("size", 50);
+        APIUtils.getCall(queryParams, "/addresses/");
     }
+
     @Given("user sends Address Get API call with invalid {string} order_by parameter and size 50")
     public void user_sends_address_get_api_call_with_invalid_order_by_parameter_and_size(String order_by) {
-        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
-                .and().header("Accept", "application/json")
-                .and().header("Content-Type", "application/json")
-                .and().header("Cookie", token)
-                .and().queryParam("order_by",order_by)
-                .and().queryParam("size", 50)
-                .and().log().all()
-                .when().get("/addresses/");
-        getResponse.then().log().all();
+        Map<String, Object> queryParams = new HashMap<>();
+        queryParams.put("order_by", order_by);
+        queryParams.put("size", 50);
+        APIUtils.getCall(queryParams, "/addresses/");
     }
 
     @Given("user sends Address Get API call with valid order_by parameter id and valid sizes {int}")
     public void user_sends_address_get_api_call_with_valid_order_by_parameter_id_and_valid_sizes(Integer size) {
-        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
-                .and().header("Accept", "application/json")
-                .and().header("Content-Type", "application/json")
-                .and().header("Cookie", token)
-                .and().queryParam("order_by","id")
-                .and().queryParam("size", size)
-                .and().log().all()
-                .when().get("/addresses/");
-        getResponse.then().log().all();
+        Map<String, Object> queryParams = new HashMap<>();
+        queryParams.put("order_by", "id");
+        queryParams.put("size", size);
+        APIUtils.getCall(queryParams, "/addresses/");
     }
 
     @Given("user sends Address Get API call with valid order_by parameter id and invalid smaller sizes {int}")
     public void user_sends_address_get_api_call_with_valid_order_by_parameter_id_and_invalid_smaller_sizes(Integer size) {
-        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
-                .and().header("Accept", "application/json")
-                .and().header("Content-Type", "application/json")
-                .and().header("Cookie", token)
-                .and().queryParam("order_by","id")
-                .and().queryParam("size", size)
-                .and().log().all()
-                .when().get("/addresses/");
-        getResponse.then().log().all();
+        Map<String, Object> queryParams = new HashMap<>();
+        queryParams.put("order_by", "id");
+        queryParams.put("size", size);
+        APIUtils.getCall(queryParams, "/addresses/");
     }
 
     @Given("user sends Address Get API call with valid order_by parameter id and invalid larger size {int}")
     public void user_sends_address_get_api_call_with_valid_order_by_parameter_id_and_invalid_larger_size(Integer size) {
-        getResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
-                .and().header("Accept", "application/json")
-                .and().header("Content-Type", "application/json")
-                .and().header("Cookie", token)
-                .and().queryParam("order_by","id")
-                .and().queryParam("size", size)
-                .and().log().all()
-                .when().get("/addresses/");
-        getResponse.then().log().all();
+        Map<String, Object> queryParams = new HashMap<>();
+        queryParams.put("order_by", "id");
+        queryParams.put("size", size);
+        APIUtils.getCall(queryParams, "/addresses/");
     }
 
     @Then("user validates get address status code {int}")
