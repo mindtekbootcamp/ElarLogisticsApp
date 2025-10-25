@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty","rerun:target/rerun.txt", "json:target/cucumber.json"},
         features = "src/test/resources/features",
         glue = "steps",
-        tags = "@createCarrierAPI2",
+        tags = "@editCarrierAPI",
         dryRun = false
 )
 

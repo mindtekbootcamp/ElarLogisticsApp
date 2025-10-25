@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
@@ -24,15 +25,19 @@ public class Hooks {
     private WebDriver driver;
 
     @Before
-    public void setup(){
-        driver = Driver.getDriver();
-        System.out.println("Before Scenario Method");
+    public void setup(Scenario scenario){
+        if(!scenario.getSourceTagNames().contains("@api")) {
+            driver = Driver.getDriver();
+            System.out.println("Before Scenario Method");
+        }
     }
 
     @After
-    public void teardown(){
-        driver.quit();
-        System.out.println("After Scenario Method");
+    public void teardown(Scenario scenario){
+        if(!scenario.getSourceTagNames().contains("@api")) {
+            driver.quit();
+            System.out.println("After Scenario Method");
+        }
     }
 
     @BeforeAll

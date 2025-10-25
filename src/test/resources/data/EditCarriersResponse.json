@@ -1,0 +1,31 @@
+{
+  "id": 215,
+  "uuid": "70488683-27a6-4a94-903c-1401ec811774",
+  "alerts": [],
+  "address": {
+    "id": 4187,
+    "uuid": "40867169-d6d3-4aa0-9ad8-f17f90a6cc65",
+    "full_address": "1234 Tester Ln Testville IL 60656",
+    "address": "1234 Tester Ln",
+    "city": "Testville",
+    "state": "IL",
+    "zip_code": "60656",
+    "name": "TJ Address"
+  },
+  "carrier_name": "Test Co",
+  "carrier_type": "Broker company",
+  "status": "Active",
+  "mc_number": "randoNum",
+  "dot_number": "randoNum",
+  "ifta": false,
+  "insurance": "Cucumber Insurance",
+  "policy_expiration": "2026-10-31",
+  "policy_number": "1234567890",
+  "other_licenses": false,
+  "created_at": "2025-10-02T01:22:36.709294Z",
+  "updated_at": "2025-10-21T00:50:46.328877Z",
+  "abbreviation": "tc1",
+  "contacts_phone": [],
+  "contacts_fax": [],
+  "contacts_email": []
+}
