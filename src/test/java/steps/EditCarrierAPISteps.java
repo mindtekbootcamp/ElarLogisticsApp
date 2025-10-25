@@ -27,6 +27,9 @@ public class EditCarrierAPISteps {
     @Given("user sends Put Carrier API call with {string} carrier_name field")
     public void user_sends_put_carrier_api_call_with_carrier_name_field(String carrier_name) {
         jsonMap = JsonUtils.getUpdatedCarrierPutRequestBody();
+        if(carrier_name.contains("null")){
+            carrier_name = null;
+        }
         jsonMap.put("carrier_name", carrier_name);
         editCarriers = JsonUnflattener.unflatten(jsonMap);
         APIUtils.putCall(editCarriers, "/carriers/" + carrierID);
@@ -35,6 +38,9 @@ public class EditCarrierAPISteps {
     @Given("user sends Put Carriers API call with {string} mc_number field")
     public void user_sends_put_carriers_api_call_with_mc_number_field(String mc_number) {
         jsonMap = JsonUtils.getUpdatedCarrierPutRequestBody();
+        if(mc_number.contains("null")){
+            mc_number = null;
+        }
         jsonMap.put("mc_number", mc_number);
         editCarriers = JsonUnflattener.unflatten(jsonMap);
         APIUtils.putCall(editCarriers, "/carriers/" + carrierID);
@@ -43,6 +49,9 @@ public class EditCarrierAPISteps {
     @Given("user sends Put Carriers API call with {string} dot_number field")
     public void user_sends_put_carriers_api_call_with_dot_number_field(String dot_number) {
         jsonMap = JsonUtils.getUpdatedCarrierPutRequestBody();
+        if(dot_number.contains("null")){
+            dot_number = null;
+        }
         jsonMap.put("dot_number", dot_number);
         editCarriers = JsonUnflattener.unflatten(jsonMap);
         APIUtils.putCall(editCarriers, "/carriers/" + carrierID);
