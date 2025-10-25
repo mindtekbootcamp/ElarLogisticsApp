@@ -26,5 +26,6 @@ public class CreateDriverResponse {
     private List<Contact> contacts_email;
     private List<Contact> contacts_viber;
     private List<Contact> contacts_other;
+    //private String detail;
 
 }

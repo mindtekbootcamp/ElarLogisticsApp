@@ -15,6 +15,7 @@ public class CreateAddressResponse {
     private String name;
     private Integer id;
     private String uuid;
+    private String full_address;
     private String created_at;
     private String updated_at;
 }

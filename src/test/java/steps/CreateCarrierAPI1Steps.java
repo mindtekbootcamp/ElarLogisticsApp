@@ -2,7 +2,6 @@ package steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.restassured.response.Response;
 import org.junit.Assert;
 import pojos.CreateCarrierRequest;
 import utilities.APIUtils;

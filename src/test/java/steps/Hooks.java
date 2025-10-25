@@ -26,7 +26,7 @@ public class Hooks {
 
     @Before
     public void setup(Scenario scenario){
-        if(!scenario.getSourceTagNames().contains("@api")) {
+        if(!scenario.getSourceTagNames().contains("@API")) {
             driver = Driver.getDriver();
             System.out.println("Before Scenario Method");
         }
@@ -34,7 +34,7 @@ public class Hooks {
 
     @After
     public void teardown(Scenario scenario){
-        if(!scenario.getSourceTagNames().contains("@api")) {
+        if(!scenario.getSourceTagNames().contains("@API")) {
             driver.quit();
             System.out.println("After Scenario Method");
         }
