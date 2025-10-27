@@ -1,4 +1,4 @@
-@regression @editDriverAPI
+@regression @editDriverAPI @api
 Feature: Validating edit driver API
 
   Scenario: Validating Edit Driver API call with valid data

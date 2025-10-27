@@ -1,4 +1,4 @@
-@regression @createCarrierAPI1
+@regression @createCarrierAPI1 @api
 Feature: Validating Post Carrier API for Name, Company type, and Abbreviation
 
   @tc34 @smoke
