@@ -24,9 +24,9 @@ public class Hooks {
 
     private WebDriver driver;
 
-    @Before
+    @Before()
     public void setup(Scenario scenario){
-        if(!scenario.getSourceTagNames().contains("@API")) {
+        if(!scenario.getSourceTagNames().contains("@api")) {
             driver = Driver.getDriver();
             System.out.println("Before Scenario Method");
         }
@@ -34,7 +34,7 @@ public class Hooks {
 
     @After
     public void teardown(Scenario scenario){
-        if(!scenario.getSourceTagNames().contains("@API")) {
+        if(!scenario.getSourceTagNames().contains("@api")) {
             driver.quit();
             System.out.println("After Scenario Method");
         }
@@ -52,6 +52,7 @@ public class Hooks {
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
         options.setProxy(seleniumProxy);
+        options.setHeadless(true);
         // Prevent proxy bypasses
         options.addArguments(
                 "--disable-features=NetworkService,NetworkServiceInProcess", // helps older Chrome/BMP combos

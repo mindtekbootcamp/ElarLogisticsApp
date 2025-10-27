@@ -1,4 +1,4 @@
-@regression @createDriverAPI
+@regression @createDriverAPI @api
 Feature: Validating create driver API
 
   @smoke

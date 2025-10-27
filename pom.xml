@@ -13,19 +13,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cucumber.filter.tags>@smoke</cucumber.filter.tags>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>smoke</id>
-            <properties><cucumber.filter.tags>@smoke</cucumber.filter.tags></properties>
-        </profile>
-        <profile>
-            <id>regression</id>
-            <properties><cucumber.filter.tags>@regression</cucumber.filter.tags></properties>
-        </profile>
-    </profiles>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
