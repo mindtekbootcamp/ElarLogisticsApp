@@ -50,7 +50,6 @@ public class Hooks {
         // 2) Wire Chrome to ALWAYS use the proxy (avoid bypass)
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
         ChromeOptions options = getChromeOptions(seleniumProxy);
-
         // 3) Enable explicit HAR capture types (headers + bodies if you want)
         proxy.newHar("session-har");
         proxy.enableHarCaptureTypes(
