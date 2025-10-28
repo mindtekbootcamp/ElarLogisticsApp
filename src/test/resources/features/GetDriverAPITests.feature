@@ -1,4 +1,4 @@
-@regression @getDriverAPI
+@regression @getDriverAPI @api
 Feature: Validating Get Driver API
 
   @tc26 @smoke
