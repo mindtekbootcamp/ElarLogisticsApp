@@ -1,10 +1,7 @@
 package utilities;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,9 +29,13 @@ public class BrowserUtils {
      *
      * @param element
      */
-    public static void waitForElementToBeClickable(WebElement element) {
+    public static WebElement waitForElementToBeClickable(By element) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    public static WebElement waitForElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     /**
@@ -118,7 +119,7 @@ public class BrowserUtils {
      */
     public static void scrollingIntoView(WebElement element) throws InterruptedException {
         JavascriptExecutor jse = ((JavascriptExecutor) Driver.getDriver());
-        jse.executeScript("arguments[0].scrollIntoView(false);", element);
+        jse.executeScript("arguments[0].scrollIntoView(true);", element);
         Thread.sleep(500);
     }
 

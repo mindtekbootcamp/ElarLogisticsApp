@@ -64,7 +64,7 @@ public class CreateCarrierAPI1Steps {
     @Given("user sends Post Driver API call with random string carrier_type field")
     public void user_sends_post_driver_api_call_with_random_string_carrier_type_field() {
         createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setCarrier_type(CarrierUtils.randomFiveDigitGenerator());
+        createCarrierRequest.setCarrier_type(CarrierUtils.randomNumberGenerator());
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 

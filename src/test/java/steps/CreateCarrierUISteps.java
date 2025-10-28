@@ -33,7 +33,7 @@ public class CreateCarrierUISteps {
     @When("user clicks on Add Carrier button")
     public void user_clicks_on_add_carrier_button() throws InterruptedException {
         ElarCarriersPage elarCarriersPage = new ElarCarriersPage();
-        Thread.sleep(1000);
+        //BrowserUtils.waitForElementToBeClickable(elarCarriersPage.getAddCarrierBtnLocator()).click();
         BrowserUtils.waitForElementToBeClickable(elarCarriersPage.addCarrierBtn);
         elarCarriersPage.addCarrierBtn.click();
     }
@@ -41,13 +41,13 @@ public class CreateCarrierUISteps {
     @When("user enters required data fields")
     public void user_enters_required_data_fields(DataTable dataTable) throws InterruptedException {
         Map<String, Object> data = dataTable.asMap(String.class, Object.class);
-        elarAddCarrierPage.carrierNameInput.sendKeys(DataTableUtils.compareIfUnique(data, "carrier_name", "$unique Co"));
-        elarAddCarrierPage.abbreviationInput.sendKeys(DataTableUtils.compareIfUnique(data, "abbreviation", "$unique Co"));
+        elarAddCarrierPage.carrierNameInput.sendKeys(DataTableUtils.compareIfNameIsUnique(data, "carrier_name", "$unique Co"));
+        elarAddCarrierPage.abbreviationInput.sendKeys(DataTableUtils.compareIfAbbreviationIsUnique(data, "abbreviation", "$unique short"));
         elarAddCarrierPage.companyTypeDropDown.click();
         WebElement brokerCompanySelect = driver.findElement(By.xpath("//li[@data-value='" + data.get("carrier_type") + "']"));
         brokerCompanySelect.click();
-        elarAddCarrierPage.mcNumInput.sendKeys(DataTableUtils.compareIfUnique(data, "mc_number", "$unique long"));
-        elarAddCarrierPage.dotNumInput.sendKeys(DataTableUtils.compareIfUnique(data, "dot_number", "$unique long"));
+        elarAddCarrierPage.mcNumInput.sendKeys(DataTableUtils.compareIfNumberIsUnique(data, "mc_number", "$unique long"));
+        elarAddCarrierPage.dotNumInput.sendKeys(DataTableUtils.compareIfNumberIsUnique(data, "dot_number", "$unique long"));
         BrowserUtils.scrollingIntoView(elarAddCarrierPage.policyNumberInput);
         elarAddCarrierPage.insuranceInput.sendKeys(data.get("insurance").toString());
         elarAddCarrierPage.policyExpirationInput.click();

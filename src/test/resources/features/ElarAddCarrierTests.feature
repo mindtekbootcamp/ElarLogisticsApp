@@ -1,4 +1,4 @@
-@regression @addCarrierUI
+@regression @addCarrierUI @ui
 Feature: Validate Add Carrier UI Functionality
 
   Background: Setup

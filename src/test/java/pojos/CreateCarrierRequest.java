@@ -26,8 +26,8 @@ public class CreateCarrierRequest {
         carrier_type = "Broker company";
         abbreviation = CarrierUtils.randomThreeDigitGenerator();
         status = "Active";
-        mc_number = CarrierUtils.randomFiveDigitGenerator();
-        dot_number = CarrierUtils.randomFiveDigitGenerator();
+        mc_number = CarrierUtils.randomNumberGenerator();
+        dot_number = CarrierUtils.randomNumberGenerator();
         ifta = "false";
         address_id = 4187;
         insurance = "Cucumber Insurance";

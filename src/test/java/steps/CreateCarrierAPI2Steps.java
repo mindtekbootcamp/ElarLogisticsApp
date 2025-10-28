@@ -1,7 +1,6 @@
 package steps;
 
 import io.cucumber.java.en.Given;
-import io.restassured.response.Response;
 import pojos.CreateCarrierRequest;
 import utilities.APIUtils;
 import utilities.CarrierUtils;
@@ -35,7 +34,7 @@ public class CreateCarrierAPI2Steps {
     @Given("user sends Post Carrier API call with more than 10 characters in MC# field")
     public void user_sends_post_Carrier_api_call_with_more_than_10_characters_in_mc_field() {
         createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setMc_number(CarrierUtils.randomFiveDigitGenerator() + CarrierUtils.randomFiveDigitGenerator() + CarrierUtils.randomFiveDigitGenerator());
+        createCarrierRequest.setMc_number(CarrierUtils.randomNumberGenerator() + CarrierUtils.randomNumberGenerator() + CarrierUtils.randomNumberGenerator());
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 
@@ -63,7 +62,7 @@ public class CreateCarrierAPI2Steps {
     @Given("user sends Post Carrier API call with more than 10 characters in DOT# field")
     public void user_sends_post_Carrier_api_call_with_more_than_10_characters_in_dot_field() {
         createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setDot_number(CarrierUtils.randomFiveDigitGenerator() + CarrierUtils.randomFiveDigitGenerator() + CarrierUtils.randomFiveDigitGenerator());
+        createCarrierRequest.setDot_number(CarrierUtils.randomNumberGenerator() + CarrierUtils.randomNumberGenerator() + CarrierUtils.randomNumberGenerator());
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 

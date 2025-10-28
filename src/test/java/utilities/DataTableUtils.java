@@ -12,9 +12,23 @@ public class DataTableUtils {
         return name;
     }
 
-    public static String compareIfUnique(Map<String, Object> dataTable, String keyInput, String valueInput) {
+    public static String compareIfNameIsUnique(Map<String, Object> dataTable, String keyInput, String valueInput) {
         if (getTableValue(dataTable, keyInput).equals(valueInput)) {
             return CarrierUtils.uuidCarrierGenerator();
+        } else {
+            return getTableValue(dataTable, keyInput);
+        }
+    }
+    public static String compareIfAbbreviationIsUnique(Map<String, Object> dataTable, String keyInput, String valueInput) {
+        if (getTableValue(dataTable, keyInput).equals(valueInput)) {
+            return CarrierUtils.randomThreeDigitGenerator();
+        } else {
+            return getTableValue(dataTable, keyInput);
+        }
+    }
+    public static String compareIfNumberIsUnique(Map<String, Object> dataTable, String keyInput, String valueInput) {
+        if (getTableValue(dataTable, keyInput).equals(valueInput)) {
+            return CarrierUtils.randomNumberGenerator();
         } else {
             return getTableValue(dataTable, keyInput);
         }

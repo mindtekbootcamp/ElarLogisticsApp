@@ -1,4 +1,4 @@
-@regression @searchDriverUI
+@regression @searchDriverUI @ui
 Feature: Validations for Elar Logistics Search Driver functionality
 
   Background: Setup
