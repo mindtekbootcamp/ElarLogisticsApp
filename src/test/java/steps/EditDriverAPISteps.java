@@ -3,13 +3,10 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.response.Response;
 import org.junit.Assert;
 import pojos.*;
-
 import utilities.APIUtils;
 import utilities.DataLoader;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -17,8 +14,6 @@ import java.time.ZoneOffset;
 public class EditDriverAPISteps {
 
     EditDriverRequest editDriverRequest = DataLoader.editDriverRequest;
-    Response putResponse;
-    Response getResponse;
     int driverID = Integer.parseInt(DataLoader.dataLoader.get("driverId").toString());
 
     @Given("user sends put API call with data")

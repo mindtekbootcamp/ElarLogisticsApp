@@ -1,6 +1,5 @@
 package utilities;
 
-import java.util.Random;
 import java.util.UUID;
 
 public class CarrierUtils {
@@ -16,20 +15,14 @@ public class CarrierUtils {
     }
 
     public static String randomThreeDigitGenerator() {
-        Random random = new Random();
-        int randomThreeNum = random.nextInt(100, 999);
-        return String.valueOf(randomThreeNum);
+        return uuidGenerator().substring(0, 3);
     }
+
     public static String randomFourDigitGenerator() {
-        Random random = new Random();
-        int randomFourNum = random.nextInt(1000, 9999);
-        return String.valueOf(randomFourNum);
+        return uuidGenerator().substring(0, 4);
     }
 
     public static String randomFiveDigitGenerator() {
-        Random random = new Random();
-        int randomFiveNum = random.nextInt(10000, 99999);
-        return String.valueOf(randomFiveNum);
-
+        return uuidGenerator().substring(0, 5);
     }
 }

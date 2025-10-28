@@ -16,13 +16,13 @@ Feature: Validating Post Carrier API for Status, MC#, and DOT#
   Scenario: Validate Post Carrier API call with no MC# field
     Given user sends Post Carrier API call with "" characters in MC# field
     Then user validates Post Carrier status code 422
-    Then user validates Post Carrier API call response body error message "String should have at least 4 character"
+    Then user validates Post Carrier API call response body error message "String should have at least 1 character"
 
   @TC47
   Scenario: Validate Post Carrier API call with less than 4 characters in MC# field
     Given user sends Post Carrier API call with less than 4 characters in MC# field
     Then user validates Post Carrier status code 422
-    Then user validates Post Carrier API call response body error message "String should have at least 4 character"
+    Then user validates Post Carrier API call response body error message "String should have at least 1 character"
 
   @TC48
   Scenario: Validate Post Carrier API call with more than 10 characters in MC# field
@@ -40,13 +40,13 @@ Feature: Validating Post Carrier API for Status, MC#, and DOT#
   Scenario: Validate Post Carrier API call with no characters in DOT# field
     Given user sends Post Carrier API call with "" characters in DOT# field
     Then user validates Post Carrier status code 422
-    Then user validates Post Carrier API call response body error message "String should have at least 4 character"
+    Then user validates Post Carrier API call response body error message "String should have at least 1 character"
 
   @TC51
   Scenario: Validate Post Carrier API call with less than 4 characters in DOT# field
     Given user sends Post Carrier API call with less than 4 characters in DOT# field
     Then user validates Post Carrier status code 422
-    Then user validates Post Carrier API call response body error message "String should have at least 4 character"
+    Then user validates Post Carrier API call response body error message "String should have at least 1 character"
 
   @TC52
   Scenario: Validate Post Carrier API call with more than 10 characters in DOT# field

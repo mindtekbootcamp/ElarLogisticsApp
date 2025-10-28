@@ -28,9 +28,11 @@ public class CreateDriverAPISteps {
         createDriverRequest.setDriving_license_exp(DataTableUtils.getTableValue(data, "driving_license_exp"));
         createDriverRequest.setMedical_certification_exp(DataTableUtils.getTableValue(data, "medical_certification_exp"));
         APIUtils.postCall(createDriverRequest, "/drivers");
-        CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
-        driverId = createDriverResponse.getId();
-        DataLoader.dataLoader.put("driverId", driverId);
+        if(DataLoader.responseData.get("postResponse").getStatusCode()==200) {
+            CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
+            driverId = createDriverResponse.getId();
+            DataLoader.dataLoader.put("driverId", driverId);
+        }
     }
 
     @Then("user validates status code {int}")
