@@ -1,4 +1,4 @@
-@regression @addDriverUI
+@regression @addDriverUI @ui
 Feature: Validations for Elar Logistics Add Driver functionality
 
   Background: Setup

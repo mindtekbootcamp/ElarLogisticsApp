@@ -49,16 +49,7 @@ public class Hooks {
 
         // 2) Wire Chrome to ALWAYS use the proxy (avoid bypass)
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-        ChromeOptions options = new ChromeOptions();
-        options.setAcceptInsecureCerts(true);
-        options.setProxy(seleniumProxy);
-        options.setHeadless(true);
-        // Prevent proxy bypasses
-        options.addArguments(
-                "--disable-features=NetworkService,NetworkServiceInProcess", // helps older Chrome/BMP combos
-                "--proxy-bypass-list=<-loopback>", // don't bypass anything except loopback
-                "--disable-quic"                   // QUIC can bypass HTTP proxy path
-        );
+        ChromeOptions options = getChromeOptions(seleniumProxy);
 
         // 3) Enable explicit HAR capture types (headers + bodies if you want)
         proxy.newHar("session-har");
@@ -95,4 +86,20 @@ public class Hooks {
         proxy.stop();
         DataLoader.token=token.toString();
     }
+
+    private static ChromeOptions getChromeOptions(Proxy seleniumProxy) {
+        ChromeOptions options = new ChromeOptions();
+        options.setAcceptInsecureCerts(true);
+        options.setProxy(seleniumProxy);
+        options.setHeadless(true);
+        // Prevent proxy bypasses
+        options.addArguments(
+                "--disable-features=NetworkService,NetworkServiceInProcess", // helps older Chrome/BMP combos
+                "--proxy-bypass-list=<-loopback>", // don't bypass anything except loopback
+                "--disable-quic"                   // QUIC can bypass HTTP proxy path
+        );
+        return options;
+    }
+
+
 }

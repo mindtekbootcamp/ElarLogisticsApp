@@ -1,5 +1,6 @@
 package utilities;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class CarrierUtils {
@@ -22,7 +23,9 @@ public class CarrierUtils {
         return uuidGenerator().substring(0, 4);
     }
 
-    public static String randomFiveDigitGenerator() {
-        return uuidGenerator().substring(0, 5);
+    public static String randomNumberGenerator() {
+        Random randomFiveDigit = new Random();
+        long  number = randomFiveDigit.nextLong(10000,999999999);
+        return number+"";
     }
 }
