@@ -21,7 +21,7 @@ public class Driver {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
-                   // options.addArguments("--disable-notifications", "--guest");
+                    options.addArguments("--disable-notifications", "--guest");
                     options.setHeadless(true);
                     driver = new ChromeDriver(options);
                     break;
