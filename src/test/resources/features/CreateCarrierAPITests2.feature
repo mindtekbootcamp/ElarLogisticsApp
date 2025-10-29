@@ -1,4 +1,4 @@
-@regression @createCarrierAPI2 @api
+@regression @createCarrierAPI2 @api @regression
 Feature: Validating Post Carrier API for Status, MC#, and DOT#
 
   @TC45 @smoke

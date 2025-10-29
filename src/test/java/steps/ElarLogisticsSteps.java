@@ -20,11 +20,6 @@ public class ElarLogisticsSteps {
     ElarLogisticsLoginPage elarLogisticsLoginPage = new ElarLogisticsLoginPage();
     ElarLogisticsMainPage elarLogisticsMainPage = new ElarLogisticsMainPage();
 
-    @Given("user navigates to elar logistics app")
-    public void user_navigates_to_elar_logistics_app() {
-        driver.get(ConfigReader.getProperty("elarlogisticsURL"));
-    }
-
     @When("user enters username {string} and password {string}")
     public void user_enters_username_and_password(String username, String password) {
         elarLogisticsLoginPage.usernameInput.sendKeys(username);

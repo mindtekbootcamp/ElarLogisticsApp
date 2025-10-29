@@ -1,4 +1,4 @@
-@regression @editCarrierAPI @api
+@regression @editCarrierAPI @api @regression
 Feature: Validating Edit Carriers API
 
   Background:

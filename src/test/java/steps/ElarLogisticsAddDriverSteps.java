@@ -26,6 +26,8 @@ public class ElarLogisticsAddDriverSteps {
     @Given("user logs in to to elar logistics app")
     public void user_logs_in_to_to_elar_logistics_app() {
         driver.get(ConfigReader.getProperty("elarlogisticsURL"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.body.style.zoom='50%'");
         ElarLogisticsLoginPage elarLogisticsLoginPage = new ElarLogisticsLoginPage();
         elarLogisticsLoginPage.loginUser();
     }

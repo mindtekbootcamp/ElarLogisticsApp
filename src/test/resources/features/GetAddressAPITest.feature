@@ -1,4 +1,4 @@
-@regression @getAddressAPI @api
+@regression @getAddressAPI @api @regression
 Feature: Validating Get Address API
 
   @smoke

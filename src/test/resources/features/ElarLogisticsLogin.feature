@@ -1,8 +1,8 @@
-@regression @loginUI @ui
+@regression @loginUI @ui @regression
 Feature: Validations for Elar Logistics Login Functionalities
 
   Background: Setup
-    Given user navigates to elar logistics app
+    Given user logs in to to elar logistics app
 
   @LoginPositive @smoke
   Scenario: Validating login functionality with positive scenario

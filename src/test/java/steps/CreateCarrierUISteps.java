@@ -57,6 +57,7 @@ public class CreateCarrierUISteps {
 
     @When("user clicks the Address Search button")
     public void user_clicks_the_address_search_button() {
+        BrowserUtils.waitForElementToBeClickable(elarAddCarrierPage.addressSearchBtn);
         elarAddCarrierPage.addressSearchBtn.click();
     }
 
