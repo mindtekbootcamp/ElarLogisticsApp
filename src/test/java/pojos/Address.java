@@ -8,12 +8,17 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Address {
-    private String state;
     private Integer id;
     private String uuid;
     private String full_address;
+    private String address;
+    private String city;
+    private String state;
+    private String zip_code;
+    private String name;
     private String created_at;
     private String updated_at;
+    private String apt_suite_company_co;
 
     public void setDefaultValues() {
         state = "IL";

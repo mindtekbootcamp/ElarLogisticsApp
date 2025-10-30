@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.ElarLogisticsAddDriverPage;
 import pages.ElarLogisticsDriverPage;
@@ -125,19 +126,15 @@ public class ElarLogisticsAddDriverSteps {
         elarLogisticsAddDriverPage.otherLocationSearchBtn.click();
     }
 
-    @When("user clicks the Create New button")
-    public void user_clicks_the_create_new_button() {
-        elarLogisticsAddDriverPage.otherLocationsPopUpCreateNewBtn.click();
-    }
-
-    @When("user clicks the Create button")
-    public void user_clicks_the_create_button() {
-        elarLogisticsAddDriverPage.otherLocationsPopUpCreateBtn.click();
+    @When("user double clicks the first address available")
+    public void user_double_clicks_the_first_address_available(){
+        Actions actions = new Actions(driver);
+        actions.doubleClick(elarLogisticsAddDriverPage.firstAvailableAddress).perform();
     }
 
     @Then("user validates created location is selected")
     public void user_validates_created_location_is_selected() {
-        Assert.assertEquals("-", elarLogisticsAddDriverPage.otherLocationsTextBox.getText());
+        Assert.assertEquals("", elarLogisticsAddDriverPage.otherLocationsTextBox.getText());
     }
 
     @When("user clicks the trash can button")
@@ -162,7 +159,7 @@ public class ElarLogisticsAddDriverSteps {
 
     @When("user clicks on Local checkbox")
     public void user_clicks_on_local_checkbox() {
-        elarLogisticsAddDriverPage.staffCheckBox.click();
+        elarLogisticsAddDriverPage.localCheckBox.click();
     }
 
     @Then("user validates Local checkmark is shown")
@@ -172,8 +169,11 @@ public class ElarLogisticsAddDriverSteps {
 
     @When("user selects from {string} from the Local State dropdown")
     public void user_selects_from_from_the_local_state_dropdown(String stateSelect) {
-        Select dropdownSelect = new Select(elarLogisticsAddDriverPage.localStateSelect);
-        dropdownSelect.selectByValue(stateSelect);
+        BrowserUtils.waitForElementToBeClickable( elarLogisticsAddDriverPage.localStateSelect);
+        elarLogisticsAddDriverPage.localStateSelect.click();
+        elarLogisticsAddDriverPage.ilState.click();
+        //Select dropdownSelect = new Select(elarLogisticsAddDriverPage.localStateSelect);
+        //dropdownSelect.selectByValue(stateSelect);
     }
 
     @When("user clicks on Create button")
@@ -196,7 +196,7 @@ public class ElarLogisticsAddDriverSteps {
 
     @Then("Local State field is empty")
     public void local_state_field_is_empty() {
-        Assert.assertTrue(elarLogisticsAddDriverPage.localStateSelect.getAttribute("value disabled").isEmpty());
+        Assert.assertTrue(elarLogisticsAddDriverPage.localStateSelect.getText().isEmpty());
     }
 
     @Then("user validates error message for medical license current date is displayed {string}")

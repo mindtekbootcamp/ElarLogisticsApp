@@ -22,41 +22,29 @@ public class CreateCarrierAPI1Steps {
     @Given("user sends Post Driver API call with {string} carrier_name field")
     public void user_sends_post_driver_api_call_with_carrier_name_field(String carrier_name) {
         createCarrierRequest.setDefaultValues();
+        if(carrier_name.contains("null")){
+            carrier_name = null;
+        }
         createCarrierRequest.setCarrier_name(carrier_name);
-        APIUtils.postCall(createCarrierRequest, "/carriers");
-    }
-
-    @Given("user sends Post Driver API call with null carrier_name field")
-    public void user_sends_post_driver_api_call_with_null_carrier_name_field() {
-        createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setCarrier_name(null);
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 
     @Given("user sends Post Driver API call with {string} abbreviation field")
     public void user_sends_post_driver_api_call_with_abbreviation_field(String abbreviation) {
         createCarrierRequest.setDefaultValues();
+        if(abbreviation.contains("null")){
+            abbreviation = null;
+        }
         createCarrierRequest.setAbbreviation(abbreviation);
-        APIUtils.postCall(createCarrierRequest, "/carriers");
-    }
-
-    @Given("user sends Post Driver API call with longer than 3 characters abbreviation field")
-    public void user_sends_post_driver_api_call_with_longer_than_3_characters_abbreviation_field() {
-        createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setAbbreviation(CarrierUtils.randomFourDigitGenerator());
-        APIUtils.postCall(createCarrierRequest, "/carriers");
-    }
-
-    @Given("user sends Post Driver API call with null abbreviation field")
-    public void user_sends_post_driver_api_call_with_null_abbreviation_field() {
-        createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setAbbreviation(null);
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 
     @Given("user sends Post Driver API call with {string} carrier_type field")
     public void user_sends_post_driver_api_call_with_carrier_type_field(String carrier_type) {
         createCarrierRequest.setDefaultValues();
+        if(carrier_type.contains("null")){
+            carrier_type = null;
+        }
         createCarrierRequest.setCarrier_type(carrier_type);
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }

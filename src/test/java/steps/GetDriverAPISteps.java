@@ -6,7 +6,9 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import utilities.APIUtils;
 import utilities.Constants;
+import utilities.DataLoader;
 
+import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,12 +91,12 @@ public class GetDriverAPISteps {
 
     @Then("user validates Get Driver status code {int}")
     public void user_validates_get_driver_status_code(Integer statusCode) {
-        getResponse.then().statusCode(statusCode);
+        DataLoader.responseData.get("getResponse").then().statusCode(statusCode);
     }
 
     @Then("user validates Get Driver response body error message {string}")
     public void user_validates_get_driver_response_body_error_message(String errorMessage) {
-        String actualErrorMessage = getResponse.body().jsonPath().getString("detail[0].msg");
+        String actualErrorMessage = DataLoader.responseData.get("getResponse").body().jsonPath().getString("detail[0].msg");
         Assert.assertEquals(errorMessage, actualErrorMessage);
     }
 }

@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import utilities.APIUtils;
+import utilities.DataLoader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,12 +56,12 @@ public class GetAddressAPISteps {
 
     @Then("user validates get address status code {int}")
     public void user_validates_get_address_status_code(Integer statusCode) {
-        getResponse.then().statusCode(statusCode);
+        DataLoader.responseData.get("getResponse").then().statusCode(statusCode);
     }
 
     @Then("user validates get address response body error message {string}")
     public void user_validates_get_address_response_body_error_message(String errorMessage) {
-        String actualErrorMessage = getResponse.body().jsonPath().getString("detail[0].msg");
+        String actualErrorMessage = DataLoader.responseData.get("getResponse").body().jsonPath().getString("detail[0].msg");
         Assert.assertEquals(errorMessage, actualErrorMessage);
     }
 }

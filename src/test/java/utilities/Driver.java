@@ -16,10 +16,10 @@ public class Driver {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         String browserType = ConfigReader.getProperty("browserType");
-        if ( driver == null || ((RemoteWebDriver)driver).getSessionId() == null ){
-            switch(browserType){
+        if (driver == null || ((RemoteWebDriver) driver).getSessionId() == null) {
+            switch (browserType) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();

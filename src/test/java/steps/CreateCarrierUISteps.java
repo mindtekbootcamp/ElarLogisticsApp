@@ -105,6 +105,7 @@ public class CreateCarrierUISteps {
 
     @Then("user validates Carrier error message for Abbreviation with special characters {string}")
     public void user_validates_carrier_error_message_for_abbreviation_with_special_characters(String expectedErrorMessage) {
+        System.out.println();
         Assert.assertEquals(expectedErrorMessage, elarAddCarrierPage.specialCharAbbrevErrorMsg.getText());
     }
 }
