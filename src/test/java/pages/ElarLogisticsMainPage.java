@@ -15,7 +15,7 @@ public class ElarLogisticsMainPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = "h2[class='MuiTypography-root MuiTypography-h2 css-12czkc3']")
+    @FindBy(xpath = "//h2[text()='Access denied!']")
     public WebElement welcomeMsg;
 
     @FindBy(xpath = "//p[text()='Drivers']")

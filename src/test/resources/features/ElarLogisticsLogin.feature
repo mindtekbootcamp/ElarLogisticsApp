@@ -2,7 +2,7 @@
 Feature: Validations for Elar Logistics Login Functionalities
 
   Background: Setup
-    Given user logs in to to elar logistics app
+    Given user opens the elar logistics app
 
   @LoginPositive @smoke
   Scenario: Validating login functionality with positive scenario
@@ -21,6 +21,3 @@ Feature: Validations for Elar Logistics Login Functionalities
     Then user validates password is shown with type attribute "text"
     When user clicks on hide password button
     Then user validates password is hidden with type attribute "password"
-
-  @createMinimumRequirements
-  Scenario: Validating Create Button Minimum Requirements

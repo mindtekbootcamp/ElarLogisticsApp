@@ -43,8 +43,13 @@ public class ElarLogisticsAddDriverPage {
     public WebElement localCheckBox;
 
     // LocalStateSelect is only clickable after "localCheckBox" is selected
-    @FindBy(name = "local_state")
+    @FindBy(xpath = "//input[@name='local_state']/preceding-sibling::div")
     public WebElement localStateSelect;
+
+    @FindBy(xpath = "//li[@data-value='WA']")
+    public WebElement ilState;
+
+
 
     @FindBy(xpath = "//p[text()='Phone']/following-sibling::button[1]")
     public WebElement addPhoneBtn;
@@ -104,13 +109,13 @@ public class ElarLogisticsAddDriverPage {
     public WebElement logbookEmailTextBox;
 
     // only clickable after "logbookEmailTextBox" is filled in
-    @FindBy(xpath = "//label[text()='Manual id']/following-sibling::div/input")
+    @FindBy(name = "logbook_password")
     public WebElement logbookPasswordTextBox;
 
     @FindBy(xpath = "//button[text()='Create new']")
     public WebElement createNewBtn;
 
-    @FindBy(xpath = "//p[text()='Required'][2]")
+    @FindBy(xpath = "(//p[text()='Required'])[1]")
     public WebElement requiredErrorMessage;
 
     @FindBy(xpath = "//p[text()='String must contain at most 50 character(s)']")
@@ -128,7 +133,9 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(xpath = "//h2[text()='Driver Created Successfully']")
     public WebElement driverCreatedSuccessfullyMessage;
 
-    @FindBy(xpath = "\"//button[text()='1']")
+    @FindBy(xpath = "//button[text()='1']")
     public WebElement calendarDay1;
 
+    @FindBy(xpath = "//div[@data-rowindex='1']")
+    public WebElement firstAvailableAddress;
 }

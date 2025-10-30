@@ -1,10 +1,8 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.restassured.response.Response;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
@@ -14,11 +12,15 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import utilities.ConfigReader;
-import utilities.DataLoader;
-import utilities.Driver;
+import pojos.ListOfCarriers;
+import utilities.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static io.restassured.RestAssured.given;
 
 public class Hooks {
 
@@ -30,7 +32,7 @@ public class Hooks {
             driver = Driver.getDriver();
             System.out.println("Before Scenario Method");
         }
-        if(DataLoader.token==null && scenario.getSourceTagNames().contains("@api")){
+        if (DataLoader.token == null && scenario.getSourceTagNames().contains("@api")) {
             BrowserMobProxy proxy = new BrowserMobProxyServer();
             proxy.setTrustAllServers(true);
             proxy.start(0);
@@ -81,6 +83,33 @@ public class Hooks {
             driver.quit();
             System.out.println("After Scenario Method");
         }
+        if (scenario.getSourceTagNames().contains("@api")) {
+            System.out.println("After method is running");
+            Map<String, Object> queryParamsForDrivers = new HashMap<>();
+            queryParamsForDrivers.put("is_staff", Constants.ISSTAFF_TRUE);
+            deleteData(queryParamsForDrivers, "/drivers");
+            deleteData(new HashMap<>(), "/carriers");
+            deleteData(new HashMap<>(), "/addresses");
+        }
+    }
+
+    public static void deleteData(Map<String, Object> queryParams, String endpoint) {
+        List<String> listIds;
+        do {
+            queryParams.put("order_by", "id");
+            queryParams.put("size", 100);
+            APIUtils.getCall(queryParams, endpoint);
+            listIds = DataLoader.responseData.get("getResponse").body().jsonPath().getList("items.id");
+            System.out.println("Carrier IDs: " + listIds);
+            for (String id : listIds) {
+                System.out.println(id);
+                Response deleteResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
+                        .and().log().all()
+                        .and().header("Cookie", DataLoader.token)
+                        .when().delete(endpoint + "/" + id);
+                deleteResponse.then().log().all();
+            }
+        } while (listIds.size() == 100);
     }
 
     private static ChromeOptions getChromeOptions(Proxy seleniumProxy) {

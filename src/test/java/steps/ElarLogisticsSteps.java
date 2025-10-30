@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.DeviceRotation;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +21,10 @@ public class ElarLogisticsSteps {
     ElarLogisticsLoginPage elarLogisticsLoginPage = new ElarLogisticsLoginPage();
     ElarLogisticsMainPage elarLogisticsMainPage = new ElarLogisticsMainPage();
 
+    @Given("user opens the elar logistics app")
+    public void user_opens_the_elar_logistics_app() {
+        driver.get(ConfigReader.getProperty("elarlogisticsURL"));
+    }
     @When("user enters username {string} and password {string}")
     public void user_enters_username_and_password(String username, String password) {
         elarLogisticsLoginPage.usernameInput.sendKeys(username);
@@ -29,6 +34,7 @@ public class ElarLogisticsSteps {
 
     @Then("user validates successful login with home page message {string}")
     public void user_validates_successful_login_with_home_page_message(String welcomeMsg) {
+        BrowserUtils.waitForElementToBeClickable(elarLogisticsMainPage.welcomeMsg);
         Assert.assertEquals(welcomeMsg, elarLogisticsMainPage.welcomeMsg.getText());
     }
 
