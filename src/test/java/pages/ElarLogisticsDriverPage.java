@@ -22,6 +22,9 @@ public class ElarLogisticsDriverPage {
     @FindBy(xpath = "//label[text()='Search...']/following-sibling::div/input")
     public WebElement driverPageSearch;
 
+    @FindBy(xpath = "//div[@id='toggle-sidebar']/button[@type='button']")
+    public WebElement sideBarToggle;
+
     @FindBy(xpath = "//button[text()='ID']")
     public WebElement idSearchBtn;
 

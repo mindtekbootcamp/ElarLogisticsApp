@@ -23,6 +23,7 @@ public class ElarLogisticsDriverSearchSteps {
 
     @When("user clicks on Search field")
     public void user_clicks_on_search_field() {
+        elarLogisticsDriverPage.sideBarToggle.click();
         elarLogisticsDriverPage.driverPageSearch.click();
     }
 
