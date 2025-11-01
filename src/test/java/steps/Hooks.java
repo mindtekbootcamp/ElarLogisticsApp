@@ -94,15 +94,14 @@ public class Hooks {
     }
 
     public static void deleteData(Map<String, Object> queryParams, String endpoint) {
-        List<String> listIds;
+        List<Integer> listIds;
         do {
             queryParams.put("order_by", "id");
-            queryParams.put("size", 100);
+            queryParams.put("size", "100");
             APIUtils.getCall(queryParams, endpoint);
             listIds = DataLoader.responseData.get("getResponse").body().jsonPath().getList("items.id");
             System.out.println("Carrier IDs: " + listIds);
-            for (String id : listIds) {
-                System.out.println(id);
+            for (Integer id : listIds) {
                 Response deleteResponse = given().baseUri(ConfigReader.getProperty("ElarAPIBaseURL"))
                         .and().log().all()
                         .and().header("Cookie", DataLoader.token)

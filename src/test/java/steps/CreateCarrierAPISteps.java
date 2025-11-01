@@ -5,10 +5,10 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import pojos.CreateCarrierRequest;
 import utilities.APIUtils;
-import utilities.CarrierUtils;
 import utilities.DataLoader;
+import utilities.DataTableUtils;
 
-public class CreateCarrierAPI1Steps {
+public class CreateCarrierAPISteps {
 
     CreateCarrierRequest createCarrierRequest = DataLoader.createCarrierRequest;
 
@@ -48,18 +48,22 @@ public class CreateCarrierAPI1Steps {
         createCarrierRequest.setCarrier_type(carrier_type);
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
-
-    @Given("user sends Post Driver API call with random string carrier_type field")
-    public void user_sends_post_driver_api_call_with_random_string_carrier_type_field() {
+    @Given("user sends Post Carrier API call with 3 Statuses {string} and valid MC# and DOT#")
+    public void user_sends_post_Carrier_api_call_with_3_statuses_and_valid_mc_and_dot(String statusInput) {
         createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setCarrier_type(CarrierUtils.randomNumberGenerator());
+        createCarrierRequest.setStatus(statusInput);
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
-
-    @Given("user sends Post Driver API call with null carrier_type field")
-    public void user_sends_post_driver_api_call_with_null_carrier_type_field() {
+    @Given("user sends Post Carrier API call with {string} MC# field")
+    public void user_sends_post_Carrier_api_call_with_mc_field(String mcNum) {
         createCarrierRequest.setDefaultValues();
-        createCarrierRequest.setCarrier_type(null);
+        createCarrierRequest.setMc_number(mcNum);
+        APIUtils.postCall(createCarrierRequest, "/carriers");
+    }
+    @Given("user sends Post Carrier API call with {string} DOT# field")
+    public void user_sends_post_Carrier_api_call_with_dot_field(String dotNum) {
+        createCarrierRequest.setDefaultValues();
+        createCarrierRequest.setDot_number(dotNum);
         APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 
@@ -76,6 +80,10 @@ public class CreateCarrierAPI1Steps {
         Assert.assertEquals(createCarrierRequest.getCarrier_name(), DataLoader.responseData.get("getResponse").body().jsonPath().get("carrier_name"));
         Assert.assertEquals(createCarrierRequest.getCarrier_type(), DataLoader.responseData.get("getResponse").body().jsonPath().get("carrier_type"));
         Assert.assertEquals(createCarrierRequest.getAbbreviation(), DataLoader.responseData.get("getResponse").body().jsonPath().get("abbreviation"));
+        Assert.assertEquals(createCarrierRequest.getStatus(), DataLoader.responseData.get("getResponse").body().jsonPath().get("status"));
+        Assert.assertEquals(createCarrierRequest.getMc_number(), DataLoader.responseData.get("getResponse").body().jsonPath().get("mc_number"));
+        Assert.assertEquals(createCarrierRequest.getDot_number(), DataLoader.responseData.get("getResponse").body().jsonPath().get("dot_number"));
+
     }
 
     @Then("user validates Post Carrier API call response body error message {string}")

@@ -29,7 +29,7 @@ public class CreateCarrierRequest {
         mc_number = CarrierUtils.randomNumberGenerator();
         dot_number = CarrierUtils.randomNumberGenerator();
         ifta = "false";
-        address_id = 4187;
+        address_id = 3955;
         insurance = "Cucumber Insurance";
         policy_expiration = "2026-09-30";
         policy_number = "1234567890";

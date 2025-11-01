@@ -69,8 +69,8 @@ public class EditDriverAPISteps {
     @Then("user validates updated_at field having the correct date")
     public void user_validates_updated_at_field_having_the_correct_date() {
         LocalDateTime localDateTime = Instant.now().atZone(ZoneOffset.UTC).toLocalDateTime();
-        String currentDate = localDateTime.toString();
-        Assert.assertEquals(currentDate, DataLoader.responseData.get("getResponse").body().jsonPath().get("updated_at").toString());
+        String currentDate = localDateTime.toString().substring(0,18);
+        Assert.assertEquals(currentDate, DataLoader.responseData.get("getResponse").body().jsonPath().get("updated_at").toString().substring(0,18));
     }
 
     @Then("user validates Edit Driver full_name response status code {int}")
