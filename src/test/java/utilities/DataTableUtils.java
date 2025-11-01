@@ -19,6 +19,7 @@ public class DataTableUtils {
             return getTableValue(dataTable, keyInput);
         }
     }
+
     public static String compareIfAbbreviationIsUnique(Map<String, Object> dataTable, String keyInput, String valueInput) {
         if (getTableValue(dataTable, keyInput).equals(valueInput)) {
             return CarrierUtils.randomThreeDigitGenerator();
@@ -26,6 +27,7 @@ public class DataTableUtils {
             return getTableValue(dataTable, keyInput);
         }
     }
+
     public static String compareIfNumberIsUnique(Map<String, Object> dataTable, String keyInput, String valueInput) {
         if (getTableValue(dataTable, keyInput).equals(valueInput)) {
             return CarrierUtils.randomNumberGenerator();

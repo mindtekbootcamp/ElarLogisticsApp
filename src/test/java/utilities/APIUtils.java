@@ -8,8 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class APIUtils {
 
-    //public static String token = DataLoader.token;
-    public static String token = "Access=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHVkZW50QG1pbmR0ZWsiLCJoZWFkZXIiOnsidHlwZSI6IkFjY2VzcyIsImFsZyI6IkhTMjU2In0sImV4cCI6MTc2MTg3MTcxMn0.Ja9iqzGOQI3TkH4og3kDSEHBPCn1tnSxjWcNGGsIR6Q; Refresh=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHVkZW50QG1pbmR0ZWsiLCJoZWFkZXIiOnsidHlwZSI6IlJlZnJlc2giLCJhbGciOiJIUzI1NiJ9LCJleHAiOjE3NjE4NzE3MTJ9.V40a1NiDY90B4VdfFcmrZFvdN2BrCVOro8efHg58d_g";
+    public static String token = DataLoader.token;
 
     public static void getCall(Map<String, Object> queryParams, String endpoint) {
 

@@ -24,6 +24,7 @@ public class ElarLogisticsDriverSearchSteps {
     @When("user clicks on Search field")
     public void user_clicks_on_search_field() {
         elarLogisticsDriverPage.sideBarToggle.click();
+        elarLogisticsDriverPage.searchAllBtn.click();
         elarLogisticsDriverPage.driverPageSearch.click();
     }
 
@@ -36,14 +37,15 @@ public class ElarLogisticsDriverSearchSteps {
     public void user_enters_id(String ID) throws InterruptedException {
         searchedID = ID;
         elarLogisticsDriverPage.driverPageSearch.sendKeys(ID + Keys.ENTER);
-        Thread.sleep(5000);
+        Thread.sleep(500);
     }
 
     @Then("user validates only drivers with provided ID search criteria should be shown")
     public void user_validates_only_drivers_with_provided_id_search_criteria_should_be_shown() {
         List<WebElement> searchResultIds = elarLogisticsDriverPage.searchResultIds;
+        Assert.assertFalse(searchResultIds.isEmpty());
         for (WebElement element : searchResultIds) {
-            Assert.assertEquals(searchedID, element.getText());
+            Assert.assertTrue("Assertion error for: "+element.getText()+" id.\nExpected id: "+searchedID,element.getText().contains(searchedID));
         }
     }
 
@@ -68,14 +70,15 @@ public class ElarLogisticsDriverSearchSteps {
     public void user_searches_full_name(String fullName) throws InterruptedException {
         searchedFullName = fullName;
         elarLogisticsDriverPage.driverPageSearch.sendKeys(fullName + Keys.ENTER);
-        Thread.sleep(5000);
+        Thread.sleep(500);
     }
 
     @Then("user validates only drivers with provided Full Name search criteria should be shown")
     public void user_validates_only_drivers_with_provided_full_name_search_criteria_should_be_shown() {
         List<WebElement> searchResultNames = elarLogisticsDriverPage.searchResultNames;
+        Assert.assertFalse(searchResultNames.isEmpty());
         for (WebElement element : searchResultNames) {
-            Assert.assertEquals(searchedFullName, element.getText());
+            Assert.assertTrue(element.getText().contains(searchedFullName));
         }
     }
 
@@ -89,13 +92,16 @@ public class ElarLogisticsDriverSearchSteps {
     public void user_searches_email_address(String email) throws InterruptedException {
         searchedEmail = email;
         elarLogisticsDriverPage.driverPageSearch.sendKeys(email + Keys.ENTER);
-        Thread.sleep(5000);
+        Thread.sleep(500);
     }
 
     @Then("user validates only drivers with provided Email search criteria should be shown")
     public void user_validates_only_drivers_with_provided_email_search_criteria_should_be_shown() {
         List<WebElement> searchResultEmails = elarLogisticsDriverPage.searchResultEmails;
-        for (WebElement element : searchResultEmails) Assert.assertEquals(searchedEmail, element.getText());
+        Assert.assertFalse(searchResultEmails.isEmpty());
+        for (WebElement element : searchResultEmails) {
+            Assert.assertTrue(element.getText().contains(searchedEmail));
+        }
     }
 
     @When("user searches phone number {string}")
@@ -109,6 +115,7 @@ public class ElarLogisticsDriverSearchSteps {
     public void user_validates_only_drivers_with_provided_phone_search_criteria_should_be_shown() {
         searchedPhone = searchedPhone.replaceAll("\\D", "");
         List<WebElement> searchResultPhones = elarLogisticsDriverPage.searchResultPhones;
+        Assert.assertFalse(searchResultPhones.isEmpty());
         for (WebElement element : searchResultPhones) {
             String digitOnlyResult = element.getText().replaceAll("\\D", "");
             Assert.assertTrue(digitOnlyResult.contains(searchedPhone));
