@@ -25,19 +25,19 @@ public class CreateDriverRequest {
     private List<Contact> contacts_viber;
     private List<Contact> contacts_other;
 
-    public void setDefaultValues(){
-        full_name="John Doe";
-        logbook_email="";
-        logbook_password="";
-        is_staff=false;
-        is_local=false;
-        twic=false;
-        driving_license_exp="2025-12-12";
-        medical_certification_exp="2025-12-12";
-        contacts_phone=new ArrayList<>();
-        contacts_email=new ArrayList<>();
-        contacts_viber=new ArrayList<>();
-        contacts_other=new ArrayList<>();
+    public void setDefaultValues() {
+        full_name = "John Doe";
+        logbook_email = "";
+        logbook_password = "";
+        is_staff = false;
+        is_local = false;
+        twic = false;
+        driving_license_exp = "2025-12-12";
+        medical_certification_exp = "2025-12-12";
+        contacts_phone = new ArrayList<>();
+        contacts_email = new ArrayList<>();
+        contacts_viber = new ArrayList<>();
+        contacts_other = new ArrayList<>();
     }
 
 

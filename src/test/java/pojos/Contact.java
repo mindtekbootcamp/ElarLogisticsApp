@@ -15,7 +15,7 @@ public class Contact {
 
     public void setDefaultValues(){
         name="";
-        value="";
+        value="+1 (234) 567 8900";
         type="";
     }
 

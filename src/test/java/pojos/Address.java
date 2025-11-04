@@ -21,10 +21,14 @@ public class Address {
     private String apt_suite_company_co;
 
     public void setDefaultValues() {
+        address = "Tester St";
+        city = "Testerville";
         state = "IL";
-        id = 4187;
+        zip_code = "60000";
+        name = "Test Address";
+        id = 4200;
         uuid = "1a5558f6-6d64-46f4-96df-5d6ce33b2f35";
-        full_address = "IL";
+        full_address = "Tester St Testerville IL 60000";
         created_at = "2025-08-28T22:14:52.953863Z";
         updated_at = "2025-08-28T22:14:53.057896Z";
     }

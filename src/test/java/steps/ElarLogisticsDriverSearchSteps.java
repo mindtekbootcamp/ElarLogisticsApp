@@ -1,6 +1,8 @@
 package steps;
 
 
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -8,18 +10,41 @@ import org.openqa.selenium.Keys;
 
 import org.openqa.selenium.WebElement;
 import pages.ElarLogisticsDriverPage;
+import pojos.CreateDriverRequest;
+import pojos.CreateDriverResponse;
+import utilities.APIUtils;
+import utilities.DataLoader;
+import utilities.DataTableUtils;
 
 
 import java.util.List;
+import java.util.Map;
 
 public class ElarLogisticsDriverSearchSteps {
 
     ElarLogisticsDriverPage elarLogisticsDriverPage = new ElarLogisticsDriverPage();
+    CreateDriverRequest createDriverRequest = DataLoader.createDriverRequest;
 
+    List<Map<String, Object>> testDrivers;
     String searchedID;
+    List<String> idList;
     String searchedFullName;
     String searchedEmail;
     String searchedPhone;
+
+    @Given("user sends create driver post api call with data")
+    public void user_sends_create_driver_post_api_call_with_data(DataTable dataTable) {
+        testDrivers = dataTable.asMaps(String.class, Object.class);
+        for (Map<String, Object> elements : testDrivers) {
+            createDriverRequest.setDefaultValues();
+            createDriverRequest.setFull_name(DataTableUtils.getTableValue(elements, "full_name"));
+            createDriverRequest.setIs_staff(Boolean.valueOf(DataTableUtils.getTableValue(elements, "is_staff")));
+            createDriverRequest.setDriving_license_exp(DataTableUtils.getTableValue(elements, "driving_license_exp"));
+            createDriverRequest.setMedical_certification_exp(DataTableUtils.getTableValue(elements, "medical_certification_exp"));
+            APIUtils.postCall(createDriverRequest, "/drivers");
+        }
+
+    }
 
     @When("user clicks on Search field")
     public void user_clicks_on_search_field() {
@@ -31,6 +56,14 @@ public class ElarLogisticsDriverSearchSteps {
     @When("user clicks ID button")
     public void user_clicks_id_button() {
         elarLogisticsDriverPage.idSearchBtn.click();
+    }
+
+    @When("user enters ID from get call response")
+    public void user_enters_id_from_get_call_response() throws InterruptedException {
+        CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
+        searchedID = createDriverResponse.getId().toString();
+        elarLogisticsDriverPage.driverPageSearch.sendKeys(searchedID + Keys.ENTER);
+        Thread.sleep(500);
     }
 
     @When("user enters ID {string}")
@@ -45,7 +78,7 @@ public class ElarLogisticsDriverSearchSteps {
         List<WebElement> searchResultIds = elarLogisticsDriverPage.searchResultIds;
         Assert.assertFalse(searchResultIds.isEmpty());
         for (WebElement element : searchResultIds) {
-            Assert.assertTrue("Assertion error for: "+element.getText()+" id.\nExpected id: "+searchedID,element.getText().contains(searchedID));
+            Assert.assertTrue("Assertion error for: " + element.getText() + " id.\nExpected id: " + searchedID, element.getText().contains(searchedID));
         }
     }
 
@@ -64,6 +97,14 @@ public class ElarLogisticsDriverSearchSteps {
     @When("user clicks NAME button")
     public void user_clicks_name_button() {
         elarLogisticsDriverPage.nameSearchBtn.click();
+    }
+
+    @When("user searches full name from get call response")
+    public void user_searches_full_name_from_get_call_response() throws InterruptedException {
+        CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
+        searchedFullName = createDriverResponse.getId().toString();
+        elarLogisticsDriverPage.driverPageSearch.sendKeys(searchedFullName + Keys.ENTER);
+        Thread.sleep(500);
     }
 
     @When("user searches full name {string}")
@@ -86,6 +127,14 @@ public class ElarLogisticsDriverSearchSteps {
     public void user_clicks_email_phone_button() {
         elarLogisticsDriverPage.emailPhoneSearchBtn.click();
 
+    }
+
+    @When("user searches email address from get call response")
+    public void user_searches_email_address_from_get_call_response() throws InterruptedException {
+        CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
+        searchedEmail = createDriverResponse.getId().toString();
+        elarLogisticsDriverPage.driverPageSearch.sendKeys(searchedEmail + Keys.ENTER);
+        Thread.sleep(500);
     }
 
     @When("user searches email address {string}")

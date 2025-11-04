@@ -1,64 +1,67 @@
-@regression @searchDriverUI @ui @regression
+@regression @searchDriverUI @api @ui @regression
 Feature: Validations for Elar Logistics Search Driver functionality
 
   Background: Setup
-    Given user logs in to to elar logistics app
+    Given user sends create driver post api call with data
+      | full_name      | is_staff | driving_license_exp | medical_certification_exp | phone             | email                    |
+      | Tom Jerry      | false    | 2026-11-30          | 2026-11-30                | +1 (234) 567-8900 | tom.jerry@gmail.com      |
+      | Dakota Salzman | false    | 2026-11-30          | 2026-11-30                | +1 (987) 654-3210 | dakota.salzman@gmail.com |
+      | Bob Tester     | false    | 2026-11-30          | 2026-11-30                | +1 (246) 468-3579 | bob.tester@gmail.com     |
+    And user logs in to to elar logistics app
     When user navigates to the Drivers page
     And user clicks on Search field
 
-#  @searchValidID @smoke
-#  Scenario: Validating Search with Valid ID
-#    And user clicks ID button
-#    And user enters ID "1234"
-#    Then user validates only drivers with provided ID search criteria should be shown
-#
+  @TC16 @smoke
+  Scenario: Validating Search with Valid ID
+    And user clicks ID button
+    And user enters ID from get call response
+    Then user validates only drivers with provided ID search criteria should be shown
+
 #  @searchInvalidIDWithLessThanFourChar @smoke
 #  Scenario: Validating Search with invalid ID with less than 4 characters
 #    And user clicks ID button
 #    And user enters ID "999"
 #    Then user validates only drivers with provided ID search criteria should be shown
-#
-#  @searchInvalidIDWithAlphabeticChar
-#  Scenario: Validating Search with invalid ID with alphabetic characters
-#    And user clicks ID button
-#    And user enters ID "asdf"
-#    Then user validates that no drivers should be shown
-#
-#  @searchInvalidIDWithSpecialChar
-#  Scenario: Validating Search with invalid ID with special characters
-#    And user clicks ID button
-#    And user enters ID "!@#$"
-#    Then user validates that no drivers should be shown
-#
-#  @searchInvalidIDWithNoInput
-#  Scenario: Validating Search with ID with no input
-#    And user clicks ID button
-#    And user enters ID ""
-#    Then user validates that all drivers should be shown
-#
-#  @searchValidFullName
-#  Scenario: Validating Search with valid full name
-#    And user clicks NAME button
-#    And user searches full name "Kyle Smith"
-#    Then user validates only drivers with provided Full Name search criteria should be shown
-#
-#  @searchInvalidNameWithSpecialChar
-#  Scenario: Validating Search with invalid full name with special characters
-#    And user clicks NAME button
-#    And user searches full name "!@#$%"
-#    Then user validates that no drivers should be shown
-#
-#  @searchValidEmail @smoke
-#  Scenario: Validating Search with valid email
-#    And user clicks EMAIL or PHONE button
-#    And user searches email address "driver@driver.com"
-#    Then user validates only drivers with provided Email search criteria should be shown
-#
-#  @searchInvalidEmailWithSpecialChar
-#  Scenario: Validating Search with invalid email with special characters
-#    And user clicks EMAIL or PHONE button
-#    And user searches email address "!@#$@gmail.com"
-#    Then user validates that no drivers should be shown
+
+  @TC19 @TC20
+  Scenario Outline: Validating Search with invalid ID with alphabetic characters
+    And user clicks ID button
+    And user enters ID "<id>"
+    Then user validates that no drivers should be shown
+    Examples:
+      | id   |
+      | asdf |
+      | !@#$ |
+
+  @TC21
+  Scenario: Validating Search with ID with no input
+    And user clicks ID button
+    And user enters ID ""
+    Then user validates that all drivers should be shown
+
+  @TC22
+  Scenario: Validating Search with valid full name
+    And user clicks NAME button
+    And user searches full name from get call response
+    Then user validates only drivers with provided Full Name search criteria should be shown
+
+  @TC24
+  Scenario: Validating Search with invalid full name with special characters
+    And user clicks NAME button
+    And user searches full name "!@#$%"
+    Then user validates that no drivers should be shown
+
+  @TC25 @smoke
+  Scenario: Validating Search with valid email
+    And user clicks EMAIL or PHONE button
+    And user searches email address from get call response
+    Then user validates only drivers with provided Email search criteria should be shown
+
+  @TC27
+  Scenario: Validating Search with invalid email with special characters
+    And user clicks EMAIL or PHONE button
+    And user searches email address "!@#$@gmail.com"
+    Then user validates that no drivers should be shown
 
   @searchValidPhoneWithSpecPunctuationChar
   Scenario: Validating Search with valid phone number with specific punctuation
