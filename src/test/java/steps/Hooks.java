@@ -28,10 +28,6 @@ public class Hooks {
 
     @Before
     public void setup(Scenario scenario) throws InterruptedException {
-        if (!scenario.getSourceTagNames().contains("@api")) {
-            driver = Driver.getDriver();
-            System.out.println("Before Scenario Method");
-        }
         if (DataLoader.token == null && scenario.getSourceTagNames().contains("@api")) {
             BrowserMobProxy proxy = new BrowserMobProxyServer();
             proxy.setTrustAllServers(true);
@@ -75,27 +71,31 @@ public class Hooks {
             proxy.stop();
             DataLoader.token = token.toString();
         }
+        if (scenario.getSourceTagNames().contains("@ui")) {
+            driver = Driver.getDriver();
+            System.out.println("Before Scenario Method");
+        }
     }
 
     @After
     public void teardown(Scenario scenario) {
-        if (!scenario.getSourceTagNames().contains("@api")) {
+        if (scenario.getSourceTagNames().contains("@api")) {
+            System.out.println("After method is running");
+
+            deleteData("/drivers");
+            deleteData("/carriers");
+            deleteData("/addresses");
+        }
+        if (scenario.getSourceTagNames().contains("@ui")) {
             driver.quit();
             System.out.println("After Scenario Method");
         }
-        if (scenario.getSourceTagNames().contains("@api")) {
-            System.out.println("After method is running");
-            Map<String, Object> queryParamsForDrivers = new HashMap<>();
-            queryParamsForDrivers.put("is_staff", Constants.ISSTAFF_TRUE);
-            deleteData(queryParamsForDrivers, "/drivers");
-            deleteData(new HashMap<>(), "/carriers");
-            deleteData(new HashMap<>(), "/addresses");
-        }
     }
 
-    public static void deleteData(Map<String, Object> queryParams, String endpoint) {
+    public static void deleteData(String endpoint) {
         List<Integer> listIds;
         do {
+            Map<String, Object> queryParams = new HashMap<>();
             queryParams.put("order_by", "id");
             queryParams.put("size", "100");
             APIUtils.getCall(queryParams, endpoint);
