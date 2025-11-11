@@ -136,6 +136,6 @@ public class ElarLogisticsAddDriverPage {
     @FindBy(xpath = "//button[text()='1']")
     public WebElement calendarDay1;
 
-    @FindBy(xpath = "//div[@data-rowindex='1']")
+    @FindBy(xpath = "//div[@data-rowindex='0']")
     public WebElement firstAvailableAddress;
 }

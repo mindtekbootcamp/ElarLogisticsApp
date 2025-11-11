@@ -77,6 +77,7 @@ public class CreateCarrierAPISteps {
         int id = DataLoader.responseData.get("postResponse").body().jsonPath().getInt("id");
         APIUtils.getCall("/carriers/" + id);
         System.out.println("Get response value: " + DataLoader.responseData.get("getResponse").asString());
+        String getResponse = DataLoader.responseData.get("getResponse").body().jsonPath().get("carrier_name");
         Assert.assertEquals(createCarrierRequest.getCarrier_name(), DataLoader.responseData.get("getResponse").body().jsonPath().get("carrier_name"));
         Assert.assertEquals(createCarrierRequest.getCarrier_type(), DataLoader.responseData.get("getResponse").body().jsonPath().get("carrier_type"));
         Assert.assertEquals(createCarrierRequest.getAbbreviation(), DataLoader.responseData.get("getResponse").body().jsonPath().get("abbreviation"));

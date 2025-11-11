@@ -31,11 +31,13 @@ public class JsonUtils {
         String dot_number = DataLoader.responseData.get("postResponse").body().jsonPath().get("dot_number");
         String abbreviation = DataLoader.responseData.get("postResponse").body().jsonPath().get("abbreviation");
         String carrier_name = DataLoader.responseData.get("postResponse").body().jsonPath().get("carrier_name");
+        int address_id = DataLoader.responseData.get("postResponse").body().jsonPath().getInt("address.id");
         jsonMap.put("id", carrierID);
         jsonMap.put("mc_number", mc_number);
         jsonMap.put("dot_number", dot_number);
         jsonMap.put("abbreviation", abbreviation);
         jsonMap.put("carrier_name", carrier_name);
+        jsonMap.put("address_id", address_id);
         return jsonMap;
     }
 }
