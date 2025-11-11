@@ -12,9 +12,12 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pojos.ListOfCarriers;
+import pojos.CreateAddressRequest;
+import pojos.CreateCarrierRequest;
+import pojos.CreateDriverRequest;
 import utilities.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +46,7 @@ public class Hooks {
     }
 
     @BeforeAll
-    public void setUp() throws InterruptedException {
+    public static void setUp() throws InterruptedException, IOException {
         BrowserMobProxy proxy = new BrowserMobProxyServer();
         proxy.setTrustAllServers(true);
         proxy.start(0);
@@ -85,18 +88,47 @@ public class Hooks {
         driver.quit();
         proxy.stop();
         DataLoader.token = token.toString();
-        /*
-        1. Create multiple drivers for testing scenarios.
-        2. Use external files to keep data.
-         */
+
+        System.out.println("Setting up data...");
+        createDriversData("/drivers");
+        createAddressesData();
+        createCarriersData();
     }
 
     @AfterAll
-    public void cleanUp(){
+    public static void cleanUp(){
         System.out.println("Cleaning up data...");
         deleteData("/drivers");
         deleteData("/carriers");
         deleteData("/addresses");
+    }
+
+    public static void createDriversData(String endpoint) throws IOException {
+        CreateDriverRequest createDriverRequest = DataLoader.createDriverRequest;
+        List<Map<String,Object>> testDrivers=CsvUtils.readCsvAsListOfMaps("TestDataPostCall");
+        for (Map<String, Object> elements : testDrivers) {
+            createDriverRequest.setDefaultValues();
+            createDriverRequest.setFull_name(DataTableUtils.getTableValue(elements, "full_name"));
+            createDriverRequest.setIs_staff(Boolean.valueOf(DataTableUtils.getTableValue(elements, "is_staff")));
+            createDriverRequest.setDriving_license_exp(DataTableUtils.getTableValue(elements, "driving_license_exp"));
+            createDriverRequest.setMedical_certification_exp(DataTableUtils.getTableValue(elements, "medical_certification_exp"));
+            createDriverRequest.setContacts_phone(DataTableUtils.getTableValueAsContactsList(elements, "contacts_phone"));
+            createDriverRequest.setContacts_email(DataTableUtils.getTableValueAsContactsList(elements, "contacts_email"));
+            APIUtils.postCall(createDriverRequest, endpoint);
+        }
+    }
+
+    private static void createAddressesData() {
+        CreateAddressRequest createAddressRequest = DataLoader.createAddressRequest;
+        createAddressRequest.setDefaultValues();
+        APIUtils.postCall(createAddressRequest, "/addresses");
+    }
+
+    private static void createCarriersData() {
+        CreateCarrierRequest createCarrierRequest = DataLoader.createCarrierRequest;
+        createCarrierRequest.setDefaultValues();
+        createCarrierRequest.setAddress_id(DataLoader.responseData.get("postResponse").body().jsonPath().getInt("id"));
+        APIUtils.postCall(createCarrierRequest, "/carriers");
     }
 
     public static void deleteData(String endpoint) {
@@ -131,6 +163,4 @@ public class Hooks {
         );
         return options;
     }
-
-
 }

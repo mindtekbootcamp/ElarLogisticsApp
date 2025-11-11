@@ -132,6 +132,7 @@ Feature: Validations for Elar Logistics Add Driver functionality
     And user enters input into Logbook email field "test@test.com"
     And user enters input into Logbook password field "testpassword"
     And user clicks the Other Location search button
+    And user clicks c
     And user double clicks the first address available
     Then user validates created location is selected
     When user clicks the trash can button

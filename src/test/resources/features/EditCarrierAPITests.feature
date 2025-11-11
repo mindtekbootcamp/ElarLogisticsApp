@@ -1,8 +1,8 @@
 @regression @editCarrierAPI @api @regression
 Feature: Validating Edit Carriers API
 
-  Background:
-    Given user sends Post Driver API call with valid name and abbreviation and 3 carrier types "Broker company"
+  #Background:
+   # Given user sends Post Driver API call with valid name and abbreviation and 3 carrier types "Broker company"
 
   @TC54 @smoke
   Scenario: Validate Put Carriers API call

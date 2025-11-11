@@ -32,20 +32,6 @@ public class ElarLogisticsDriverSearchSteps {
     String searchedEmail;
     String searchedPhone;
 
-    @Given("user sends create driver post api call with data")
-    public void user_sends_create_driver_post_api_call_with_data(DataTable dataTable) {
-        testDrivers = dataTable.asMaps(String.class, Object.class);
-        for (Map<String, Object> elements : testDrivers) {
-            createDriverRequest.setDefaultValues();
-            createDriverRequest.setFull_name(DataTableUtils.getTableValue(elements, "full_name"));
-            createDriverRequest.setIs_staff(Boolean.valueOf(DataTableUtils.getTableValue(elements, "is_staff")));
-            createDriverRequest.setDriving_license_exp(DataTableUtils.getTableValue(elements, "driving_license_exp"));
-            createDriverRequest.setMedical_certification_exp(DataTableUtils.getTableValue(elements, "medical_certification_exp"));
-            APIUtils.postCall(createDriverRequest, "/drivers");
-        }
-
-    }
-
     @When("user clicks on Search field")
     public void user_clicks_on_search_field() {
         elarLogisticsDriverPage.sideBarToggle.click();
@@ -91,7 +77,7 @@ public class ElarLogisticsDriverSearchSteps {
     @Then("user validates that all drivers should be shown")
     public void user_validates_that_all_drivers_should_be_shown() {
         List<WebElement> searchResultNoInput = elarLogisticsDriverPage.searchResultIds;
-        Assert.assertTrue(!searchResultNoInput.isEmpty());
+        Assert.assertFalse(searchResultNoInput.isEmpty());
     }
 
     @When("user clicks NAME button")
@@ -102,7 +88,7 @@ public class ElarLogisticsDriverSearchSteps {
     @When("user searches full name from get call response")
     public void user_searches_full_name_from_get_call_response() throws InterruptedException {
         CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
-        searchedFullName = createDriverResponse.getId().toString();
+        searchedFullName = createDriverResponse.getFull_name();
         elarLogisticsDriverPage.driverPageSearch.sendKeys(searchedFullName + Keys.ENTER);
         Thread.sleep(500);
     }
@@ -132,7 +118,7 @@ public class ElarLogisticsDriverSearchSteps {
     @When("user searches email address from get call response")
     public void user_searches_email_address_from_get_call_response() throws InterruptedException {
         CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
-        searchedEmail = createDriverResponse.getId().toString();
+        searchedEmail = createDriverResponse.getContacts_email().toString();
         elarLogisticsDriverPage.driverPageSearch.sendKeys(searchedEmail + Keys.ENTER);
         Thread.sleep(500);
     }
@@ -151,6 +137,14 @@ public class ElarLogisticsDriverSearchSteps {
         for (WebElement element : searchResultEmails) {
             Assert.assertTrue(element.getText().contains(searchedEmail));
         }
+    }
+
+    @When("user searches phone number from get call response")
+    public void user_searches_phone_number_from_get_call_response() throws InterruptedException {
+        CreateDriverResponse createDriverResponse = DataLoader.responseData.get("postResponse").as(CreateDriverResponse.class); // DESERIALIZATION
+        searchedPhone = createDriverResponse.getContacts_phone().toString();
+        elarLogisticsDriverPage.driverPageSearch.sendKeys(searchedPhone + Keys.ENTER);
+        Thread.sleep(500);
     }
 
     @When("user searches phone number {string}")

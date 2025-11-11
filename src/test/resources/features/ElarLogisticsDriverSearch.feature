@@ -1,13 +1,8 @@
-@regression @searchDriverUI @api @ui @regression
+@regression @searchDriverUI @api @ui
 Feature: Validations for Elar Logistics Search Driver functionality
 
   Background: Setup
-    Given user sends create driver post api call with data
-      | full_name      | is_staff | driving_license_exp | medical_certification_exp | phone             | email                    |
-      | Tom Jerry      | false    | 2026-11-30          | 2026-11-30                | +1 (234) 567-8900 | tom.jerry@gmail.com      |
-      | Dakota Salzman | false    | 2026-11-30          | 2026-11-30                | +1 (987) 654-3210 | dakota.salzman@gmail.com |
-      | Bob Tester     | false    | 2026-11-30          | 2026-11-30                | +1 (246) 468-3579 | bob.tester@gmail.com     |
-    And user logs in to to elar logistics app
+    Given user logs in to to elar logistics app
     When user navigates to the Drivers page
     And user clicks on Search field
 
@@ -30,14 +25,9 @@ Feature: Validations for Elar Logistics Search Driver functionality
     Then user validates that no drivers should be shown
     Examples:
       | id   |
+      |      |
       | asdf |
       | !@#$ |
-
-  @TC21
-  Scenario: Validating Search with ID with no input
-    And user clicks ID button
-    And user enters ID ""
-    Then user validates that all drivers should be shown
 
   @TC22
   Scenario: Validating Search with valid full name
@@ -63,38 +53,32 @@ Feature: Validations for Elar Logistics Search Driver functionality
     And user searches email address "!@#$@gmail.com"
     Then user validates that no drivers should be shown
 
-  @searchValidPhoneWithSpecPunctuationChar
-  Scenario: Validating Search with valid phone number with specific punctuation
+  Scenario: Validating Search with valid email
     And user clicks EMAIL or PHONE button
-    And user searches phone number "(234) 567-8900"
+    And user searches phone number from get call response
     Then user validates only drivers with provided Phone search criteria should be shown
 
-  @searchValidPhoneWithoutSpecPunctuationChar
-  Scenario: Validating Search with valid phone number without specific punctuation
+  Scenario Outline: Validating Search with valid phone number
     And user clicks EMAIL or PHONE button
-    And user searches phone number "2345678900"
+    And user searches phone number "<contacts_phone>"
     Then user validates only drivers with provided Phone search criteria should be shown
+    Examples:
+      | contacts_phone    |
+      | +1 (234) 567-8900 |
+      | (234) 567-8900    |
+      | 2345678900        |
 
-  @searchValidPhoneWithPlusOne
-  Scenario: Validating Search with valid phone number with +1 in front
+  Scenario Outline: Validating Search with invalid Phone number
     And user clicks EMAIL or PHONE button
-    And user searches phone number "+1 (234) 567-8900"
+    And user searches phone number "<contacts_phone>"
     Then user validates only drivers with provided Phone search criteria should be shown
+    Examples:
+      | contacts_phone |
+      | (234) 567      |
+      | 56789          |
 
   @searchInvalidPhoneWithMoreThanTenNum
   Scenario: Validating Search with invalid phone number with greater than ten numbers
     And user clicks EMAIL or PHONE button
     And user searches phone number "23456789001"
     Then user validates that no drivers should be shown
-
-  @searchInvalidPhoneWithLessThanTenNumWithSpecPunctuationChar
-  Scenario: Validating Search with invalid Phone number with less than 10 numbers with specific punctuation characters
-    And user clicks EMAIL or PHONE button
-    And user searches phone number "(234) 567"
-    Then user validates only drivers with provided Phone search criteria should be shown
-
-  @searchInvalidPhoneWithLessThanTenNumWithoutSpecPunctuationChar
-  Scenario: Validating Search with invalid Phone number with less than 10 numbers without specific punctuation characters
-    And user clicks EMAIL or PHONE button
-    And user searches phone number "34564"
-    Then user validates only drivers with provided Phone search criteria should be shown
