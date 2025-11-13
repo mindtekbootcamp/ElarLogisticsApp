@@ -90,6 +90,7 @@
                 <version>3.5.3</version>
                 <configuration>
                     <systemPropertyVariables>
+                        <!--suppress UnresolvedMavenProperty -->
                         <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
                     </systemPropertyVariables>
                     <includes>
